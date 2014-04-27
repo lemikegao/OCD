@@ -28,24 +28,9 @@
     [skView presentScene:scene];
 }
 
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+    return UIInterfaceOrientationPortrait;
 }
 
 @end
