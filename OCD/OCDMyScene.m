@@ -20,6 +20,11 @@
         backgroundImage.anchorPoint = CGPointMake(0, 1);
         backgroundImage.position = CGPointMake(0, size.height);
         [self addChild:backgroundImage];
+        
+        // Temp object
+        SKSpriteNode *object = [SKSpriteNode spriteNodeWithImageNamed:@"object"];
+        object.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5);
+        [self addChild:object];
     }
     
     return self;
