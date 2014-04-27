@@ -14,8 +14,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
 
-    // Configure the view.
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    // Configure the view in viewWillLayoutSubviews so bounds.size accomodates landscape orientation
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
@@ -28,9 +33,14 @@
     [skView presentScene:scene];
 }
 
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationPortrait;
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 @end

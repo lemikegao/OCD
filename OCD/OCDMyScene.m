@@ -15,8 +15,13 @@
 
     if (self)
     {
-    
+        // Background
+        SKSpriteNode *backgroundImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+        backgroundImage.anchorPoint = CGPointMake(0, 1);
+        backgroundImage.position = CGPointMake(0, size.height);
+        [self addChild:backgroundImage];
     }
+    
     return self;
 }
 
