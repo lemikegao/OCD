@@ -57,8 +57,8 @@ static NSInteger const kZIndexFront = 1000;
         // Reset button
         SKButton *resetButton = [SKButton buttonWithImageNamedNormal:@"button-reset" selected:nil];
         resetButton.zPosition = kZIndexFront;
-        resetButton.anchorPoint = CGPointMake(1, 1);
-        resetButton.position = CGPointMake(self.size.width * 0.98, self.size.height * 0.98);
+        resetButton.anchorPoint = CGPointMake(1, 0);
+        resetButton.position = CGPointMake(self.size.width * 0.98, self.size.height * 0.02);
         [resetButton setTouchUpInsideTarget:self action:@selector(p_randomizeObjects:)];
         [self addChild:resetButton];
     }
