@@ -12,12 +12,13 @@
 
 @property (nonatomic, strong) NSMutableSet *objectSet;
 @property (nonatomic, strong) SKSpriteNode *selectedNode;
-@property (nonatomic, strong) SKSpriteNode *previousSelectedNode;
+@property (nonatomic, strong) SKSpriteNode *tappedNode;
 
 @end
 
 static NSUInteger const kNumObjects = 4;
 static NSString *const kNodeNameBackground = @"kNodeNameBackground";
+static NSString *const kNodeNameResetButton = @"kNodeNameResetButton";
 static NSString *const kNodeNameBorder = @"kNodeNameBorder";
 static NSInteger const kZIndexDefaultObject = 1;
 static NSInteger const kZIndexSelectedObject = 10;
@@ -33,7 +34,6 @@ static NSInteger const kZIndexFront = 1000;
         // Init
         _objectSet = [[NSMutableSet alloc] initWithCapacity:kNumObjects];
         _selectedNode = nil;
-        _previousSelectedNode = nil;
         
         // Background
         SKSpriteNode *backgroundImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
@@ -56,9 +56,9 @@ static NSInteger const kZIndexFront = 1000;
         
         // Reset button
         SKButton *resetButton = [SKButton buttonWithImageNamedNormal:@"button-reset" selected:nil];
+        resetButton.name = kNodeNameResetButton;
         resetButton.zPosition = kZIndexFront;
-        resetButton.anchorPoint = CGPointMake(1, 0);
-        resetButton.position = CGPointMake(self.size.width * 0.98, self.size.height * 0.02);
+        resetButton.position = CGPointMake(self.size.width * 0.98 - resetButton.size.width/2, self.size.height * 0.02 + resetButton.size.height/2);
         [resetButton setTouchUpInsideTarget:self action:@selector(p_randomizeObjects:)];
         [self addChild:resetButton];
     }
@@ -68,8 +68,21 @@ static NSInteger const kZIndexFront = 1000;
 
 - (void)didMoveToView:(SKView *)view
 {
+    // Drag
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)];
     [self.view addGestureRecognizer:panGestureRecognizer];
+    
+    // Tap
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+
+- (void)handleTapFrom:(UITapGestureRecognizer *)recognizer
+{
+    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+    touchLocation = [self convertPointFromView:touchLocation];
+    
+    [self p_selectNodeForTapAtPosition:touchLocation];
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer
@@ -79,7 +92,12 @@ static NSInteger const kZIndexFront = 1000;
         CGPoint touchLocation = [recognizer locationInView:recognizer.view];
         touchLocation = [self convertPointFromView:touchLocation];
         
-        [self p_selectNodeForTouch:touchLocation];
+        // Remove any border from any tapped objects
+        self.tappedNode.zPosition = kZIndexDefaultObject;
+        [self.tappedNode removeAllChildren];
+        self.tappedNode = nil;
+        
+        [self p_selectNodeForDragAtPosition:touchLocation];
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged)
     {
@@ -91,28 +109,50 @@ static NSInteger const kZIndexFront = 1000;
     else if (recognizer.state == UIGestureRecognizerStateEnded)
     {
         // Remove border
+        self.selectedNode.zPosition = kZIndexDefaultObject;
         [self.selectedNode removeAllChildren];
-        
-//        CGFloat scrollDuration = 0.5f;
-//        CGFloat damping = 0.2f;
-//        CGPoint velocity = [recognizer velocityInView:recognizer.view];
-//        CGPoint pos = self.selectedNode.position;
-//        CGPoint p = CGPointMake(velocity.x * scrollDuration * damping, velocity.y * scrollDuration * damping);
-//        
-//        CGPoint newPos = [self p_positionWithinBoundsForPosition:CGPointMake(pos.x + p.x, pos.y - p.y)];
-//        [self.selectedNode removeAllActions];
-//        
-//        SKAction *moveTo = [SKAction moveTo:newPos duration:scrollDuration];
-//        [moveTo setTimingMode:SKActionTimingEaseOut];
-//        [self.selectedNode runAction:moveTo];
-        
-        self.previousSelectedNode = self.selectedNode;
         self.selectedNode = nil;
     }
 }
 
 #pragma mark - Touch detection
-- (void)p_selectNodeForTouch:(CGPoint)touchLocation
+- (void)p_selectNodeForTapAtPosition:(CGPoint)touchLocation
+{
+    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+    NSString *name = touchedNode.name;
+    if ([name isEqualToString:kNodeNameBackground] == NO && [name isEqualToString:kNodeNameResetButton] == NO)
+    {
+        // Parent is the border's parent node
+        if ([self.tappedNode isEqual:touchedNode.parent] == NO)
+        {
+            // Move previous selected node back and new tapped node forward
+            [self.tappedNode removeAllChildren];
+            self.tappedNode.zPosition = kZIndexDefaultObject;
+            touchedNode.zPosition = kZIndexSelectedObject;
+            self.tappedNode = touchedNode;
+            
+            // Add border to selectedNode
+            SKShapeNode *border = [SKShapeNode new];
+            border.name = kNodeNameBorder;
+            border.path = CGPathCreateWithRect(CGRectMake(-touchedNode.size.width/2, -touchedNode.size.height/2, touchedNode.size.width, touchedNode.size.height), NULL);
+            border.strokeColor = [UIColor greenColor];
+            [touchedNode addChild:border];
+        }
+    }
+    else
+    {
+        self.tappedNode.zPosition = kZIndexDefaultObject;
+        [self.tappedNode removeAllChildren];
+        self.tappedNode = nil;
+        
+        if ([name isEqualToString:kNodeNameResetButton])
+        {
+            [self p_randomizeObjects:nil];
+        }
+    }
+}
+
+- (void)p_selectNodeForDragAtPosition:(CGPoint)touchLocation
 {
     SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
     if ([touchedNode.name isEqual:kNodeNameBackground] == NO)
@@ -120,7 +160,7 @@ static NSInteger const kZIndexFront = 1000;
         if ([self.selectedNode isEqual:touchedNode] == NO)
         {
             // Move previous selected node back and new selected node forward
-            self.previousSelectedNode.zPosition = kZIndexDefaultObject;
+            self.selectedNode.zPosition = kZIndexDefaultObject;
             touchedNode.zPosition = kZIndexSelectedObject;
             self.selectedNode = touchedNode;
             
