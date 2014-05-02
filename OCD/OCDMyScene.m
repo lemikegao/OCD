@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSMutableSet *objectSet;
 @property (nonatomic, strong) SKSpriteNode *selectedNode;
 @property (nonatomic, strong) SKSpriteNode *tappedNode;
+@property (nonatomic, strong) SKLabelNode *tappedNodeNameLabel;
 
 @end
 
@@ -61,6 +62,14 @@ static NSInteger const kZIndexFront = 1000;
         resetButton.position = CGPointMake(self.size.width * 0.98 - resetButton.size.width/2, self.size.height * 0.02 + resetButton.size.height/2);
         [resetButton setTouchUpInsideTarget:self action:@selector(p_randomizeObjects:)];
         [self addChild:resetButton];
+        
+        // Initialize tapped node name label
+        _tappedNodeNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica-Bold"];
+        _tappedNodeNameLabel.fontSize = 14;
+        _tappedNodeNameLabel.text = @"Box";
+        _tappedNodeNameLabel.fontColor = [UIColor whiteColor];
+        _tappedNodeNameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+        _tappedNodeNameLabel.zPosition = kZIndexFront;
     }
     
     return self;
@@ -93,9 +102,7 @@ static NSInteger const kZIndexFront = 1000;
         touchLocation = [self convertPointFromView:touchLocation];
         
         // Remove any border from any tapped objects
-        self.tappedNode.zPosition = kZIndexDefaultObject;
-        [self.tappedNode removeAllChildren];
-        self.tappedNode = nil;
+        [self p_resetTappedObject];
         
         [self p_selectNodeForDragAtPosition:touchLocation];
     }
@@ -126,8 +133,7 @@ static NSInteger const kZIndexFront = 1000;
         if ([self.tappedNode isEqual:touchedNode.parent] == NO)
         {
             // Move previous selected node back and new tapped node forward
-            [self.tappedNode removeAllChildren];
-            self.tappedNode.zPosition = kZIndexDefaultObject;
+            [self p_resetTappedObject];
             touchedNode.zPosition = kZIndexSelectedObject;
             self.tappedNode = touchedNode;
             
@@ -137,13 +143,26 @@ static NSInteger const kZIndexFront = 1000;
             border.path = CGPathCreateWithRect(CGRectMake(-touchedNode.size.width/2, -touchedNode.size.height/2, touchedNode.size.width, touchedNode.size.height), NULL);
             border.strokeColor = [UIColor greenColor];
             [touchedNode addChild:border];
+            
+            // Add label
+            // Check if there is room above the object
+            CGPoint labelPos;
+            if (self.tappedNode.position.y + self.tappedNode.size.height/2 + 30 < self.size.height)
+            {
+                labelPos = CGPointMake(self.tappedNode.position.x, self.tappedNode.position.y + self.tappedNode.size.height/2 + 16);
+            }
+            else
+            {
+                labelPos = CGPointMake(self.tappedNode.position.x, self.tappedNode.position.y - self.tappedNode.size.height/2 - 16);
+            }
+            
+            self.tappedNodeNameLabel.position = labelPos;
+            [self addChild:self.tappedNodeNameLabel];
         }
     }
     else
     {
-        self.tappedNode.zPosition = kZIndexDefaultObject;
-        [self.tappedNode removeAllChildren];
-        self.tappedNode = nil;
+        [self p_resetTappedObject];
         
         if ([name isEqualToString:kNodeNameResetButton])
         {
@@ -220,6 +239,16 @@ static NSInteger const kZIndexFront = 1000;
         CGFloat randomDegrees = arc4random() % 360;
         obj.zRotation = DegreesToRadians(randomDegrees);
     }];
+}
+
+#pragma mark - Private methods
+- (void)p_resetTappedObject
+{
+    self.tappedNode.zPosition = kZIndexDefaultObject;
+    [self.tappedNode removeAllChildren];
+    self.tappedNode = nil;
+    // Remove name label
+    [self.tappedNodeNameLabel removeFromParent];
 }
 
 - (void)update:(CFTimeInterval)currentTime
