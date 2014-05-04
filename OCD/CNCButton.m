@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Chin and Cheeks LLC. All rights reserved.
 //
 
-#import "SKButton.h"
+#import "CNCButton.h"
 #import <objc/message.h>
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
@@ -17,7 +17,7 @@ Stuff; \
 _Pragma("clang diagnostic pop") \
 } while (0)
 
-@implementation SKButton
+@implementation CNCButton
 
 #pragma mark Convenience Methods
 + (instancetype)buttonWithImageNamedNormal:(NSString *)normal selected:(NSString *)selected

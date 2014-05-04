@@ -7,13 +7,19 @@
 //
 
 #import "OCDMyScene.h"
+#import "CNCOneFingerRotationGestureRecognizer.h"
 
-@interface OCDMyScene()
+@interface OCDMyScene() <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableSet *objectSet;
 @property (nonatomic, strong) SKSpriteNode *selectedNode;
 @property (nonatomic, strong) SKSpriteNode *tappedNode;
 @property (nonatomic, strong) SKLabelNode *tappedNodeNameLabel;
+
+// Gesture recognizers
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) CNCOneFingerRotationGestureRecognizer *rotationGestureRecognizer;
 
 @end
 
@@ -56,7 +62,7 @@ static NSInteger const kZIndexFront = 1000;
         [self p_randomizeObjects:nil];
         
         // Reset button
-        SKButton *resetButton = [SKButton buttonWithImageNamedNormal:@"button-reset" selected:nil];
+        CNCButton *resetButton = [CNCButton buttonWithImageNamedNormal:@"button-reset" selected:nil];
         resetButton.name = kNodeNameResetButton;
         resetButton.zPosition = kZIndexFront;
         resetButton.position = CGPointMake(self.size.width * 0.98 - resetButton.size.width/2, self.size.height * 0.02 + resetButton.size.height/2);
@@ -78,12 +84,18 @@ static NSInteger const kZIndexFront = 1000;
 - (void)didMoveToView:(SKView *)view
 {
     // Drag
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)];
-    [self.view addGestureRecognizer:panGestureRecognizer];
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)];
+    self.panGestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:self.panGestureRecognizer];
     
     // Tap
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
+    
+    // Rotation
+    self.rotationGestureRecognizer = [[CNCOneFingerRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotateFrom:)];
+    self.rotationGestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:self.rotationGestureRecognizer];
 }
 
 - (void)handleTapFrom:(UITapGestureRecognizer *)recognizer
@@ -120,6 +132,30 @@ static NSInteger const kZIndexFront = 1000;
         [self.selectedNode removeAllChildren];
         self.selectedNode = nil;
     }
+}
+
+- (void)handleRotateFrom:(CNCOneFingerRotationGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateBegan)
+    {
+        recognizer.rotationCenter = [self convertPointToView:self.tappedNode.position];
+    }
+    else if (recognizer.state == UIGestureRecognizerStateChanged)
+    {
+        self.tappedNode.zRotation -= recognizer.rotation;
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate methods
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    // Only allow rotation when there is a tapped node
+    if ([gestureRecognizer isEqual:self.rotationGestureRecognizer] && self.tappedNode == nil)
+    {
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - Touch detection

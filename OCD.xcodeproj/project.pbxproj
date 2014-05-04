@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E088EB5190DF7930028E347 /* SKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E088EB4190DF7930028E347 /* SKButton.m */; };
+		3E088EB5190DF7930028E347 /* CNCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E088EB4190DF7930028E347 /* CNCButton.m */; };
 		3E28A954190BB02400C03663 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A953190BB02400C03663 /* Foundation.framework */; };
 		3E28A956190BB02400C03663 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A955190BB02400C03663 /* CoreGraphics.framework */; };
 		3E28A958190BB02400C03663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A957190BB02400C03663 /* UIKit.framework */; };
@@ -25,6 +25,7 @@
 		3E28A97F190BB02400C03663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A957190BB02400C03663 /* UIKit.framework */; };
 		3E28A987190BB02400C03663 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A985190BB02400C03663 /* InfoPlist.strings */; };
 		3E28A989190BB02400C03663 /* OCDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A988190BB02400C03663 /* OCDTests.m */; };
+		3EDFE5E41915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3E088EB3190DF7930028E347 /* SKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKButton.h; sourceTree = "<group>"; };
-		3E088EB4190DF7930028E347 /* SKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKButton.m; sourceTree = "<group>"; };
+		3E088EB3190DF7930028E347 /* CNCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCButton.h; sourceTree = "<group>"; };
+		3E088EB4190DF7930028E347 /* CNCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCButton.m; sourceTree = "<group>"; };
 		3E088EB6190E23FA0028E347 /* OCDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDConstants.h; sourceTree = "<group>"; };
 		3E28A950190BB02400C03663 /* OCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E28A953190BB02400C03663 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +65,8 @@
 		3E28A984190BB02400C03663 /* OCDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OCDTests-Info.plist"; sourceTree = "<group>"; };
 		3E28A986190BB02400C03663 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E28A988190BB02400C03663 /* OCDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCDTests.m; sourceTree = "<group>"; };
+		3EDFE5E21915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCOneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
+		3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCOneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +145,10 @@
 		3E28A95C190BB02400C03663 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3E088EB3190DF7930028E347 /* SKButton.h */,
-				3E088EB4190DF7930028E347 /* SKButton.m */,
+				3E088EB3190DF7930028E347 /* CNCButton.h */,
+				3E088EB4190DF7930028E347 /* CNCButton.m */,
+				3EDFE5E21915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.h */,
+				3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */,
 				3E28A95D190BB02400C03663 /* OCD-Info.plist */,
 				3E28A95E190BB02400C03663 /* InfoPlist.strings */,
 				3E28A961190BB02400C03663 /* main.m */,
@@ -291,7 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E28A96F190BB02400C03663 /* OCDViewController.m in Sources */,
-				3E088EB5190DF7930028E347 /* SKButton.m in Sources */,
+				3E088EB5190DF7930028E347 /* CNCButton.m in Sources */,
+				3EDFE5E41915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m in Sources */,
 				3E28A972190BB02400C03663 /* OCDMyScene.m in Sources */,
 				3E28A962190BB02400C03663 /* main.m in Sources */,
 				3E28A966190BB02400C03663 /* OCDAppDelegate.m in Sources */,
