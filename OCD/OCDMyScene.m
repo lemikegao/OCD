@@ -76,6 +76,14 @@ static NSInteger const kZIndexFront = 1000;
         _tappedNodeNameLabel.fontColor = [UIColor whiteColor];
         _tappedNodeNameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         _tappedNodeNameLabel.zPosition = kZIndexFront;
+        
+        // Add version label
+        SKLabelNode *versionLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+        versionLabel.fontSize = 12;
+        versionLabel.text = [NSString stringWithFormat:@"%@ (%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+        versionLabel.fontColor = [UIColor whiteColor];
+        versionLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+        [self addChild:versionLabel];
     }
     
     return self;
@@ -163,7 +171,7 @@ static NSInteger const kZIndexFront = 1000;
 {
     SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
     NSString *name = touchedNode.name;
-    if ([name isEqualToString:kNodeNameBackground] == NO && [name isEqualToString:kNodeNameResetButton] == NO)
+    if ([name isEqualToString:kNodeNameBackground] == NO && [name isEqualToString:kNodeNameResetButton] == NO && [touchedNode isKindOfClass:[SKSpriteNode class]])
     {
         // Parent is the border's parent node
         if ([self.tappedNode isEqual:touchedNode.parent] == NO)
@@ -210,7 +218,7 @@ static NSInteger const kZIndexFront = 1000;
 - (void)p_selectNodeForDragAtPosition:(CGPoint)touchLocation
 {
     SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
-    if ([touchedNode.name isEqual:kNodeNameBackground] == NO)
+    if ([touchedNode.name isEqual:kNodeNameBackground] == NO && [touchedNode isKindOfClass:[SKLabelNode class]] == NO)
     {
         if ([self.selectedNode isEqual:touchedNode] == NO)
         {
