@@ -8,24 +8,28 @@
 
 #import "OCDMyScene.h"
 #import "CNCOneFingerRotationGestureRecognizer.h"
+#import "OCDGameObject.h"
 
 @interface OCDMyScene() <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableSet *objectSet;
-@property (nonatomic, strong) SKSpriteNode *selectedNode;
-@property (nonatomic, strong) SKSpriteNode *tappedNode;
+@property (nonatomic, strong) OCDGameObject *selectedNode;
+@property (nonatomic, strong) OCDGameObject *tappedNode;
 @property (nonatomic, strong) SKSpriteNode *rotationSymbol;
 @property (nonatomic, strong) SKLabelNode *tappedNodeNameLabel;
 
 // Gesture recognizers
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleTapGestureRecognizer;
 @property (nonatomic, strong) CNCOneFingerRotationGestureRecognizer *rotationGestureRecognizer;
 
 @end
 
 static NSUInteger const kNumObjects = 4;
 static NSString *const kNodeNameBackground = @"kNodeNameBackground";
+static NSString *const kNodeNameLock = @"kNodeNameLock";
+static NSString *const kNodeNameRotationIcon = @"kNodeNameRotationIcon";
 static NSString *const kNodeNameResetButton = @"kNodeNameResetButton";
 static NSString *const kNodeNameBorder = @"kNodeNameBorder";
 static NSInteger const kZIndexDefaultObject = 1;
@@ -53,7 +57,7 @@ static NSInteger const kZIndexFront = 1000;
         // Initial objects
         for (NSUInteger i=0; i<kNumObjects; i++)
         {
-            SKSpriteNode *object = [SKSpriteNode spriteNodeWithImageNamed:@"object"];
+            OCDGameObject *object = [[OCDGameObject alloc] initWithImageNamed:@"object"];
             object.zPosition = kZIndexDefaultObject;
             [_objectSet addObject:object];
             [self addChild:object];
@@ -88,6 +92,7 @@ static NSInteger const kZIndexFront = 1000;
         
         _rotationSymbol = [[SKSpriteNode alloc] initWithImageNamed:@"object-rotation"];
         _rotationSymbol.position = CGPointZero;
+        _rotationSymbol.name = kNodeNameRotationIcon;
     }
     
     return self;
@@ -102,7 +107,15 @@ static NSInteger const kZIndexFront = 1000;
     
     // Tap
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    self.tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:self.tapGestureRecognizer];
+    
+    // Double tap
+    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapFrom:)];
+    self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:self.doubleTapGestureRecognizer];
+    
+    [self.tapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
     
     // Rotation
     self.rotationGestureRecognizer = [[CNCOneFingerRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotateFrom:)];
@@ -116,6 +129,14 @@ static NSInteger const kZIndexFront = 1000;
     touchLocation = [self convertPointFromView:touchLocation];
     
     [self p_selectNodeForTapAtPosition:touchLocation];
+}
+
+- (void)handleDoubleTapFrom:(UITapGestureRecognizer *)recognizer
+{
+    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+    touchLocation = [self convertPointFromView:touchLocation];
+    
+    [self p_lockNodeForDoubleTapAtPosition:touchLocation];
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer
@@ -156,6 +177,7 @@ static NSInteger const kZIndexFront = 1000;
     {
         self.tappedNode.zRotation -= recognizer.rotation;
         self.rotationSymbol.zRotation += recognizer.rotation;
+        
     }
 }
 
@@ -174,8 +196,13 @@ static NSInteger const kZIndexFront = 1000;
 #pragma mark - Touch detection
 - (void)p_selectNodeForTapAtPosition:(CGPoint)touchLocation
 {
-    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+    OCDGameObject *touchedNode = (OCDGameObject *)[self nodeAtPoint:touchLocation];
     NSString *name = touchedNode.name;
+    if ([name isEqualToString:kNodeNameLock])
+    {
+        // Send touch to parent object (the box)
+        touchedNode = (OCDGameObject *)touchedNode.parent;
+    }
     if ([name isEqualToString:kNodeNameBackground] == NO && [name isEqualToString:kNodeNameResetButton] == NO && [touchedNode isKindOfClass:[SKSpriteNode class]])
     {
         // Parent is the border's parent node
@@ -224,10 +251,47 @@ static NSInteger const kZIndexFront = 1000;
     }
 }
 
+- (void)p_lockNodeForDoubleTapAtPosition:(CGPoint)touchLocation
+{
+    OCDGameObject *touchedNode = (OCDGameObject *)[self nodeAtPoint:touchLocation];
+    NSString *name = touchedNode.name;
+    if ([name isEqualToString:kNodeNameLock] || [name isEqualToString:kNodeNameRotationIcon])
+    {
+        // Send touch to parent object (the box)
+        touchedNode = (OCDGameObject *)touchedNode.parent;
+    }
+    if ([touchedNode isKindOfClass:[OCDGameObject class]])
+    {
+        BOOL locked = touchedNode.isLocked;
+        if (locked)
+        {
+            // Unlock
+            // Remove lock icon
+            [touchedNode.children enumerateObjectsUsingBlock:^(SKSpriteNode *obj, NSUInteger idx, BOOL *stop) {
+                if ([obj.name isEqualToString:kNodeNameLock])
+                {
+                    [obj removeFromParent];
+                }
+            }];
+        }
+        else
+        {
+            // Lock
+            // Add lock icon
+            SKSpriteNode *lockIcon = [SKSpriteNode spriteNodeWithImageNamed:@"lock"];
+            lockIcon.name = kNodeNameLock;
+            lockIcon.zRotation = touchedNode.zRotation * -1;
+            [touchedNode addChild:lockIcon];
+        }
+        
+        touchedNode.locked = !locked;
+    }
+}
+
 - (void)p_selectNodeForDragAtPosition:(CGPoint)touchLocation
 {
-    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
-    if ([touchedNode.name isEqual:kNodeNameBackground] == NO && [touchedNode isKindOfClass:[SKLabelNode class]] == NO)
+    OCDGameObject *touchedNode = (OCDGameObject *)[self nodeAtPoint:touchLocation];
+    if ([touchedNode.name isEqual:kNodeNameBackground] == NO && [touchedNode.name isEqualToString:kNodeNameLock] == NO && [touchedNode isKindOfClass:[SKLabelNode class]] == NO && touchedNode.isLocked == NO)
     {
         if ([self.selectedNode isEqual:touchedNode] == NO)
         {
@@ -298,7 +362,13 @@ static NSInteger const kZIndexFront = 1000;
 - (void)p_resetTappedObject
 {
     self.tappedNode.zPosition = kZIndexDefaultObject;
-    [self.tappedNode removeAllChildren];
+    // Remove border and rotate symbol
+    [self.tappedNode.children enumerateObjectsUsingBlock:^(SKSpriteNode *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj.name isEqualToString:kNodeNameBorder] || [obj.name isEqualToString:kNodeNameRotationIcon])
+        {
+            [obj removeFromParent];
+        }
+    }];
     self.tappedNode = nil;
     // Remove name label
     [self.tappedNodeNameLabel removeFromParent];

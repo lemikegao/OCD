@@ -25,6 +25,7 @@
 		3E28A97F190BB02400C03663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A957190BB02400C03663 /* UIKit.framework */; };
 		3E28A987190BB02400C03663 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A985190BB02400C03663 /* InfoPlist.strings */; };
 		3E28A989190BB02400C03663 /* OCDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A988190BB02400C03663 /* OCDTests.m */; };
+		3E9AEF4C191755CF00A18F72 /* OCDGameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AEF4B191755CF00A18F72 /* OCDGameObject.m */; };
 		3EDFE5E41915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		3E28A984190BB02400C03663 /* OCDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OCDTests-Info.plist"; sourceTree = "<group>"; };
 		3E28A986190BB02400C03663 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E28A988190BB02400C03663 /* OCDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCDTests.m; sourceTree = "<group>"; };
+		3E9AEF4A191755CF00A18F72 /* OCDGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDGameObject.h; sourceTree = "<group>"; };
+		3E9AEF4B191755CF00A18F72 /* OCDGameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDGameObject.m; sourceTree = "<group>"; };
 		3EDFE5E21915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCOneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCOneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +157,8 @@
 				3E28A961190BB02400C03663 /* main.m */,
 				3E28A963190BB02400C03663 /* OCD-Prefix.pch */,
 				3E088EB6190E23FA0028E347 /* OCDConstants.h */,
+				3E9AEF4A191755CF00A18F72 /* OCDGameObject.h */,
+				3E9AEF4B191755CF00A18F72 /* OCDGameObject.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E9AEF4C191755CF00A18F72 /* OCDGameObject.m in Sources */,
 				3E28A96F190BB02400C03663 /* OCDViewController.m in Sources */,
 				3E088EB5190DF7930028E347 /* CNCButton.m in Sources */,
 				3EDFE5E41915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m in Sources */,
