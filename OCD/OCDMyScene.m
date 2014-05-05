@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSMutableSet *objectSet;
 @property (nonatomic, strong) SKSpriteNode *selectedNode;
 @property (nonatomic, strong) SKSpriteNode *tappedNode;
+@property (nonatomic, strong) SKSpriteNode *rotationSymbol;
 @property (nonatomic, strong) SKLabelNode *tappedNodeNameLabel;
 
 // Gesture recognizers
@@ -84,6 +85,9 @@ static NSInteger const kZIndexFront = 1000;
         versionLabel.fontColor = [UIColor whiteColor];
         versionLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         [self addChild:versionLabel];
+        
+        _rotationSymbol = [[SKSpriteNode alloc] initWithImageNamed:@"object-rotation"];
+        _rotationSymbol.position = CGPointZero;
     }
     
     return self;
@@ -151,6 +155,7 @@ static NSInteger const kZIndexFront = 1000;
     else if (recognizer.state == UIGestureRecognizerStateChanged)
     {
         self.tappedNode.zRotation -= recognizer.rotation;
+        self.rotationSymbol.zRotation += recognizer.rotation;
     }
 }
 
@@ -202,6 +207,10 @@ static NSInteger const kZIndexFront = 1000;
             
             self.tappedNodeNameLabel.position = labelPos;
             [self addChild:self.tappedNodeNameLabel];
+            
+            // Add rotation symbol
+            self.rotationSymbol.zRotation = self.tappedNode.zRotation * -1;
+            [self.tappedNode addChild:self.rotationSymbol];
         }
     }
     else
