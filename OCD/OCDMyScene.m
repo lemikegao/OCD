@@ -203,10 +203,15 @@ static NSInteger const kZIndexFront = 1000;
         // Send touch to parent object (the box)
         touchedNode = (OCDGameObject *)touchedNode.parent;
     }
-    if ([name isEqualToString:kNodeNameBackground] == NO && [name isEqualToString:kNodeNameResetButton] == NO && [touchedNode isKindOfClass:[SKSpriteNode class]])
+    if ([name isEqualToString:kNodeNameBackground] == NO && [name isEqualToString:kNodeNameResetButton] == NO && [touchedNode isKindOfClass:[CNCButton class]] == NO && [touchedNode isKindOfClass:[SKLabelNode class]] == NO)
     {
         // Parent is the border's parent node
-        if ([self.tappedNode isEqual:touchedNode.parent] == NO)
+        if ([touchedNode.name isEqualToString:kNodeNameBorder] || [touchedNode.name isEqualToString:kNodeNameRotationIcon])
+        {
+            touchedNode = (OCDGameObject *)touchedNode.parent;
+        }
+        
+        if ([self.tappedNode isEqual:touchedNode] == NO)
         {
             // Move previous selected node back and new tapped node forward
             [self p_resetTappedObject];
@@ -238,6 +243,11 @@ static NSInteger const kZIndexFront = 1000;
             // Add rotation symbol
             self.rotationSymbol.zRotation = self.tappedNode.zRotation * -1;
             [self.tappedNode addChild:self.rotationSymbol];
+        }
+        else
+        {
+            // Deselect already tapped node
+            [self p_resetTappedObject];
         }
     }
     else
