@@ -115,8 +115,6 @@ static NSInteger const kZIndexFront = 1000;
     self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:self.doubleTapGestureRecognizer];
     
-    [self.tapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
-    
     // Rotation
     self.rotationGestureRecognizer = [[CNCOneFingerRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotateFrom:)];
     self.rotationGestureRecognizer.delegate = self;
@@ -137,6 +135,7 @@ static NSInteger const kZIndexFront = 1000;
     touchLocation = [self convertPointFromView:touchLocation];
     
     [self p_lockNodeForDoubleTapAtPosition:touchLocation];
+    [self p_resetTappedObject];
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer
