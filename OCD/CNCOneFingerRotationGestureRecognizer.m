@@ -64,7 +64,14 @@
     CGPoint previousTouchPoint = [touch previousLocationInView:view];
     
     CGFloat angleInRadians = atan2f(currentTouchPoint.y - self.rotationCenter.y, currentTouchPoint.x - self.rotationCenter.x) - atan2f(previousTouchPoint.y - self.rotationCenter.y, previousTouchPoint.x - self.rotationCenter.x);
-    self.rotation = angleInRadians;
+    if (fabsf(angleInRadians) < 6)
+    {
+        self.rotation = angleInRadians;
+    }
+    else
+    {
+        self.rotation = 0;
+    }
 #warning - This message is getting printed out even if no object is being dragged. Fix that.
     NSLog(@"angleInRadians: %f", angleInRadians);
 }

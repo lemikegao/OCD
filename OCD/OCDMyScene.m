@@ -17,6 +17,7 @@
 @property (nonatomic, strong) OCDGameObject *tappedNode;
 @property (nonatomic, strong) SKSpriteNode *rotationSymbol;
 @property (nonatomic, strong) SKLabelNode *tappedNodeNameLabel;
+@property (nonatomic, assign) CGFloat tappedNodeRotationRemainder;
 
 // Gesture recognizers
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
@@ -35,6 +36,7 @@ static NSString *const kNodeNameBorder = @"kNodeNameBorder";
 static NSInteger const kZIndexDefaultObject = 1;
 static NSInteger const kZIndexSelectedObject = 10;
 static NSInteger const kZIndexFront = 1000;
+static NSUInteger const kDegreeInterval = 15;
 
 @implementation OCDMyScene
 
@@ -174,9 +176,7 @@ static NSInteger const kZIndexFront = 1000;
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged)
     {
-        self.tappedNode.zRotation -= recognizer.rotation;
-        self.rotationSymbol.zRotation += recognizer.rotation;
-        
+        [self p_rotateForRotation:recognizer.rotation];
     }
 }
 
@@ -242,6 +242,8 @@ static NSInteger const kZIndexFront = 1000;
             // Add rotation symbol
             self.rotationSymbol.zRotation = self.tappedNode.zRotation * -1;
             [self.tappedNode addChild:self.rotationSymbol];
+            
+            self.tappedNodeRotationRemainder = 0;
         }
         else
         {
@@ -325,6 +327,24 @@ static NSInteger const kZIndexFront = 1000;
     self.selectedNode.position = [self p_positionWithinBoundsForPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
 }
 
+- (void)p_rotateForRotation:(CGFloat)rotation
+{
+    // Rotate every degree
+//    self.tappedNode.zRotation -= rotation;
+//    self.rotationSymbol.zRotation += rotation;
+    
+    self.tappedNodeRotationRemainder += rotation;
+    
+    CGFloat degreeIntervalInRadians = DegreesToRadians(kDegreeInterval);
+    CGFloat numIntervalsToRotate = (fabsf(self.tappedNodeRotationRemainder) > degreeIntervalInRadians) ? 1 : 0;
+    CGFloat multiplier = (self.tappedNodeRotationRemainder > 0) ? 1 : -1;
+    CGFloat amountToRotateInRadians = multiplier * numIntervalsToRotate * degreeIntervalInRadians;
+    self.tappedNode.zRotation -= amountToRotateInRadians;
+    self.rotationSymbol.zRotation += amountToRotateInRadians;
+    
+    self.tappedNodeRotationRemainder -= amountToRotateInRadians;
+}
+
 - (CGPoint)p_positionWithinBoundsForPosition:(CGPoint)newPos
 {
     CGPoint retVal = newPos;
@@ -362,8 +382,8 @@ static NSInteger const kZIndexFront = 1000;
         obj.position = CGPointMake(randomX, randomY);
         
         // Rotation
-        CGFloat randomDegrees = arc4random() % 360;
-        obj.zRotation = DegreesToRadians(randomDegrees);
+        NSUInteger randomNumDegreeInterval = arc4random() % 360/kDegreeInterval;        // 360 degrees / 15 degree intervals
+        obj.zRotation = DegreesToRadians(randomNumDegreeInterval * kDegreeInterval);
     }];
 }
 
