@@ -18,6 +18,7 @@
 @property (nonatomic, strong) SKSpriteNode *rotationSymbol;
 @property (nonatomic, strong) SKLabelNode *tappedNodeNameLabel;
 @property (nonatomic, assign) CGFloat tappedNodeRotationRemainder;
+@property (nonatomic) NSInteger zPositionTracker;
 
 // Gesture recognizers
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
@@ -34,9 +35,7 @@ static NSString *const kNodeNameRotationIcon = @"kNodeNameRotationIcon";
 static NSString *const kNodeNameResetButton = @"kNodeNameResetButton";
 static NSString *const kNodeNameBorder = @"kNodeNameBorder";
 static NSString *const kNodeNameGameObject = @"kNodeNameGameObject";
-static NSInteger const kZIndexDefaultObject = 1;
-static NSInteger const kZIndexSelectedObject = 10;
-static NSInteger const kZIndexFront = 1000;
+static NSInteger const kZIndexFront = 9999;
 static NSUInteger const kDegreeInterval = 15;
 
 @implementation OCDMyScene
@@ -49,6 +48,7 @@ static NSUInteger const kDegreeInterval = 15;
         // Init
         _objectSet = [[NSMutableSet alloc] initWithCapacity:kNumObjects];
         _selectedNode = nil;
+        _zPositionTracker = 0;
         
         // Background
         SKSpriteNode *backgroundImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
@@ -62,7 +62,8 @@ static NSUInteger const kDegreeInterval = 15;
         {
             OCDGameObject *object = [[OCDGameObject alloc] initWithImageNamed:@"object"];
             object.name = kNodeNameGameObject;
-            object.zPosition = kZIndexDefaultObject;
+            object.zPosition = _zPositionTracker;
+            _zPositionTracker++;
             [_objectSet addObject:object];
             [self addChild:object];
         }
@@ -166,7 +167,6 @@ static NSUInteger const kDegreeInterval = 15;
     else if (recognizer.state == UIGestureRecognizerStateEnded)
     {
         // Remove border
-        self.selectedNode.zPosition = kZIndexDefaultObject;
         [self.selectedNode removeAllChildren];
         self.selectedNode = nil;
     }
@@ -230,7 +230,7 @@ static NSUInteger const kDegreeInterval = 15;
         {
             // Move previous selected node back and new tapped node forward
             [self p_resetTappedObject];
-            touchedNode.zPosition = kZIndexSelectedObject;
+            [self p_moveObjectToFront:touchedNode];
             self.tappedNode = touchedNode;
             
             // Add border to selectedNode
@@ -323,8 +323,7 @@ static NSUInteger const kDegreeInterval = 15;
         if ([self.selectedNode isEqual:touchedNode] == NO)
         {
             // Move previous selected node back and new selected node forward
-            self.selectedNode.zPosition = kZIndexDefaultObject;
-            touchedNode.zPosition = kZIndexSelectedObject;
+            [self p_moveObjectToFront:touchedNode];
             self.selectedNode = touchedNode;
             
             // Add border to selectedNode
@@ -406,7 +405,6 @@ static NSUInteger const kDegreeInterval = 15;
 #pragma mark - Private methods
 - (void)p_resetTappedObject
 {
-    self.tappedNode.zPosition = kZIndexDefaultObject;
     // Remove border and rotate symbol
     [self.tappedNode.children enumerateObjectsUsingBlock:^(SKSpriteNode *obj, NSUInteger idx, BOOL *stop) {
         if ([obj.name isEqualToString:kNodeNameBorder] || [obj.name isEqualToString:kNodeNameRotationIcon])
@@ -417,6 +415,15 @@ static NSUInteger const kDegreeInterval = 15;
     self.tappedNode = nil;
     // Remove name label
     [self.tappedNodeNameLabel removeFromParent];
+}
+
+- (void)p_moveObjectToFront:(SKNode *)object
+{
+    if (object.zPosition < self.zPositionTracker)
+    {
+        object.zPosition = self.zPositionTracker;
+        self.zPositionTracker++;
+    }
 }
 
 - (void)update:(CFTimeInterval)currentTime
