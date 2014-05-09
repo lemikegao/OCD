@@ -33,6 +33,7 @@ static NSString *const kNodeNameLock = @"kNodeNameLock";
 static NSString *const kNodeNameRotationIcon = @"kNodeNameRotationIcon";
 static NSString *const kNodeNameResetButton = @"kNodeNameResetButton";
 static NSString *const kNodeNameBorder = @"kNodeNameBorder";
+static NSString *const kNodeNameGameObject = @"kNodeNameGameObject";
 static NSInteger const kZIndexDefaultObject = 1;
 static NSInteger const kZIndexSelectedObject = 10;
 static NSInteger const kZIndexFront = 1000;
@@ -60,6 +61,7 @@ static NSUInteger const kDegreeInterval = 15;
         for (NSUInteger i=0; i<kNumObjects; i++)
         {
             OCDGameObject *object = [[OCDGameObject alloc] initWithImageNamed:@"object"];
+            object.name = kNodeNameGameObject;
             object.zPosition = kZIndexDefaultObject;
             [_objectSet addObject:object];
             [self addChild:object];
@@ -121,6 +123,8 @@ static NSUInteger const kDegreeInterval = 15;
     self.rotationGestureRecognizer = [[CNCOneFingerRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotateFrom:)];
     self.rotationGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.rotationGestureRecognizer];
+    
+    [self.rotationGestureRecognizer requireGestureRecognizerToFail:self.panGestureRecognizer];
 }
 
 - (void)handleTapFrom:(UITapGestureRecognizer *)recognizer
@@ -187,6 +191,18 @@ static NSUInteger const kDegreeInterval = 15;
     if ([gestureRecognizer isEqual:self.rotationGestureRecognizer] && self.tappedNode == nil)
     {
         return NO;
+    }
+    if ([gestureRecognizer isEqual:self.panGestureRecognizer])
+    {
+        CGPoint touchLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
+        touchLocation = [self convertPointFromView:touchLocation];
+        SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+        if ([touchedNode.name isEqualToString:kNodeNameLock])
+        {
+            touchedNode = (SKSpriteNode*)touchedNode.parent;
+        }
+        
+        return [touchedNode.name isEqualToString:kNodeNameGameObject];
     }
     
     return YES;
