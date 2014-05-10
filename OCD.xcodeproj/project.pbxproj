@@ -7,26 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E088EB5190DF7930028E347 /* CNCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E088EB4190DF7930028E347 /* CNCButton.m */; };
 		3E28A954190BB02400C03663 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A953190BB02400C03663 /* Foundation.framework */; };
 		3E28A956190BB02400C03663 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A955190BB02400C03663 /* CoreGraphics.framework */; };
 		3E28A958190BB02400C03663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A957190BB02400C03663 /* UIKit.framework */; };
 		3E28A95A190BB02400C03663 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A959190BB02400C03663 /* SpriteKit.framework */; };
 		3E28A960190BB02400C03663 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A95E190BB02400C03663 /* InfoPlist.strings */; };
 		3E28A962190BB02400C03663 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A961190BB02400C03663 /* main.m */; };
-		3E28A966190BB02400C03663 /* OCDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A965190BB02400C03663 /* OCDAppDelegate.m */; };
 		3E28A969190BB02400C03663 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A967190BB02400C03663 /* Main_iPhone.storyboard */; };
 		3E28A96C190BB02400C03663 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
-		3E28A96F190BB02400C03663 /* OCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A96E190BB02400C03663 /* OCDViewController.m */; };
-		3E28A972190BB02400C03663 /* OCDMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A971190BB02400C03663 /* OCDMyScene.m */; };
-		3E28A976190BB02400C03663 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A975190BB02400C03663 /* Images.xcassets */; };
 		3E28A97D190BB02400C03663 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A97C190BB02400C03663 /* XCTest.framework */; };
 		3E28A97E190BB02400C03663 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A953190BB02400C03663 /* Foundation.framework */; };
 		3E28A97F190BB02400C03663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A957190BB02400C03663 /* UIKit.framework */; };
 		3E28A987190BB02400C03663 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A985190BB02400C03663 /* InfoPlist.strings */; };
 		3E28A989190BB02400C03663 /* OCDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A988190BB02400C03663 /* OCDTests.m */; };
-		3E9AEF4C191755CF00A18F72 /* OCDGameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AEF4B191755CF00A18F72 /* OCDGameObject.m */; };
-		3EDFE5E41915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */; };
+		3E3DA0FF191E283B00DC2112 /* CNCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0EE191E283B00DC2112 /* CNCButton.m */; };
+		3E3DA100191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0F0191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.m */; };
+		3E3DA101191E283B00DC2112 /* OCDGameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0F3191E283B00DC2112 /* OCDGameObject.m */; };
+		3E3DA102191E283B00DC2112 /* OCDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0F5191E283B00DC2112 /* OCDAppDelegate.m */; };
+		3E3DA103191E283B00DC2112 /* OCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0F8191E283B00DC2112 /* OCDViewController.m */; };
+		3E3DA104191E283B00DC2112 /* OCDPrototypeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0FB191E283B00DC2112 /* OCDPrototypeScene.m */; };
+		3E3DA105191E283B00DC2112 /* OCDTutorialScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA0FD191E283B00DC2112 /* OCDTutorialScene.m */; };
+		3E3DA10C191E286A00DC2112 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DA108191E286A00DC2112 /* Images.xcassets */; };
+		3E3DA10F191E289D00DC2112 /* OCDGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA10E191E289D00DC2112 /* OCDGameManager.m */; };
+		3E3DA111191E29B800DC2112 /* tutorial-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,9 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3E088EB3190DF7930028E347 /* CNCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCButton.h; sourceTree = "<group>"; };
-		3E088EB4190DF7930028E347 /* CNCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCButton.m; sourceTree = "<group>"; };
-		3E088EB6190E23FA0028E347 /* OCDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDConstants.h; sourceTree = "<group>"; };
 		3E28A950190BB02400C03663 /* OCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E28A953190BB02400C03663 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E28A955190BB02400C03663 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,24 +52,32 @@
 		3E28A95F190BB02400C03663 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E28A961190BB02400C03663 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E28A963190BB02400C03663 /* OCD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCD-Prefix.pch"; sourceTree = "<group>"; };
-		3E28A964190BB02400C03663 /* OCDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCDAppDelegate.h; sourceTree = "<group>"; };
-		3E28A965190BB02400C03663 /* OCDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCDAppDelegate.m; sourceTree = "<group>"; };
 		3E28A968190BB02400C03663 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		3E28A96B190BB02400C03663 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		3E28A96D190BB02400C03663 /* OCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCDViewController.h; sourceTree = "<group>"; };
-		3E28A96E190BB02400C03663 /* OCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCDViewController.m; sourceTree = "<group>"; };
-		3E28A970190BB02400C03663 /* OCDMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCDMyScene.h; sourceTree = "<group>"; };
-		3E28A971190BB02400C03663 /* OCDMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCDMyScene.m; sourceTree = "<group>"; };
-		3E28A975190BB02400C03663 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E28A97B190BB02400C03663 /* OCDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E28A97C190BB02400C03663 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3E28A984190BB02400C03663 /* OCDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OCDTests-Info.plist"; sourceTree = "<group>"; };
 		3E28A986190BB02400C03663 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E28A988190BB02400C03663 /* OCDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCDTests.m; sourceTree = "<group>"; };
-		3E9AEF4A191755CF00A18F72 /* OCDGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDGameObject.h; sourceTree = "<group>"; };
-		3E9AEF4B191755CF00A18F72 /* OCDGameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDGameObject.m; sourceTree = "<group>"; };
-		3EDFE5E21915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCOneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
-		3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCOneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
+		3E3DA0ED191E283B00DC2112 /* CNCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCButton.h; sourceTree = "<group>"; };
+		3E3DA0EE191E283B00DC2112 /* CNCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCButton.m; sourceTree = "<group>"; };
+		3E3DA0EF191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCOneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
+		3E3DA0F0191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCOneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
+		3E3DA0F2191E283B00DC2112 /* OCDGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDGameObject.h; sourceTree = "<group>"; };
+		3E3DA0F3191E283B00DC2112 /* OCDGameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDGameObject.m; sourceTree = "<group>"; };
+		3E3DA0F4191E283B00DC2112 /* OCDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDAppDelegate.h; sourceTree = "<group>"; };
+		3E3DA0F5191E283B00DC2112 /* OCDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDAppDelegate.m; sourceTree = "<group>"; };
+		3E3DA0F6191E283B00DC2112 /* OCDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDConstants.h; sourceTree = "<group>"; };
+		3E3DA0F7191E283B00DC2112 /* OCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDViewController.h; sourceTree = "<group>"; };
+		3E3DA0F8191E283B00DC2112 /* OCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDViewController.m; sourceTree = "<group>"; };
+		3E3DA0FA191E283B00DC2112 /* OCDPrototypeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDPrototypeScene.h; sourceTree = "<group>"; };
+		3E3DA0FB191E283B00DC2112 /* OCDPrototypeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDPrototypeScene.m; sourceTree = "<group>"; };
+		3E3DA0FC191E283B00DC2112 /* OCDTutorialScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDTutorialScene.h; sourceTree = "<group>"; };
+		3E3DA0FD191E283B00DC2112 /* OCDTutorialScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDTutorialScene.m; sourceTree = "<group>"; };
+		3E3DA108191E286A00DC2112 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3E3DA10D191E289D00DC2112 /* OCDGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDGameManager.h; sourceTree = "<group>"; };
+		3E3DA10E191E289D00DC2112 /* OCDGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDGameManager.m; sourceTree = "<group>"; };
+		3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "tutorial-music.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,15 +139,10 @@
 		3E28A95B190BB02400C03663 /* OCD */ = {
 			isa = PBXGroup;
 			children = (
-				3E28A964190BB02400C03663 /* OCDAppDelegate.h */,
-				3E28A965190BB02400C03663 /* OCDAppDelegate.m */,
+				3E3DA0EA191E283B00DC2112 /* Classes */,
+				3E3DA106191E286A00DC2112 /* Resources */,
 				3E28A967190BB02400C03663 /* Main_iPhone.storyboard */,
 				3E28A96A190BB02400C03663 /* Main_iPad.storyboard */,
-				3E28A96D190BB02400C03663 /* OCDViewController.h */,
-				3E28A96E190BB02400C03663 /* OCDViewController.m */,
-				3E28A970190BB02400C03663 /* OCDMyScene.h */,
-				3E28A971190BB02400C03663 /* OCDMyScene.m */,
-				3E28A975190BB02400C03663 /* Images.xcassets */,
 				3E28A95C190BB02400C03663 /* Supporting Files */,
 			);
 			path = OCD;
@@ -148,17 +151,10 @@
 		3E28A95C190BB02400C03663 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3E088EB3190DF7930028E347 /* CNCButton.h */,
-				3E088EB4190DF7930028E347 /* CNCButton.m */,
-				3EDFE5E21915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.h */,
-				3EDFE5E31915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m */,
 				3E28A95D190BB02400C03663 /* OCD-Info.plist */,
 				3E28A95E190BB02400C03663 /* InfoPlist.strings */,
 				3E28A961190BB02400C03663 /* main.m */,
 				3E28A963190BB02400C03663 /* OCD-Prefix.pch */,
-				3E088EB6190E23FA0028E347 /* OCDConstants.h */,
-				3E9AEF4A191755CF00A18F72 /* OCDGameObject.h */,
-				3E9AEF4B191755CF00A18F72 /* OCDGameObject.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,6 +175,111 @@
 				3E28A985190BB02400C03663 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3E3DA0EA191E283B00DC2112 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA0EB191E283B00DC2112 /* Categories */,
+				3E3DA0EC191E283B00DC2112 /* CNC */,
+				3E3DA0F1191E283B00DC2112 /* Models */,
+				3E3DA0F4191E283B00DC2112 /* OCDAppDelegate.h */,
+				3E3DA0F5191E283B00DC2112 /* OCDAppDelegate.m */,
+				3E3DA0F6191E283B00DC2112 /* OCDConstants.h */,
+				3E3DA0F7191E283B00DC2112 /* OCDViewController.h */,
+				3E3DA0F8191E283B00DC2112 /* OCDViewController.m */,
+				3E3DA0F9191E283B00DC2112 /* Scenes */,
+				3E3DA0FE191E283B00DC2112 /* Singletons */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3E3DA0EB191E283B00DC2112 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		3E3DA0EC191E283B00DC2112 /* CNC */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA0ED191E283B00DC2112 /* CNCButton.h */,
+				3E3DA0EE191E283B00DC2112 /* CNCButton.m */,
+				3E3DA0EF191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.h */,
+				3E3DA0F0191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.m */,
+			);
+			path = CNC;
+			sourceTree = "<group>";
+		};
+		3E3DA0F1191E283B00DC2112 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA0F2191E283B00DC2112 /* OCDGameObject.h */,
+				3E3DA0F3191E283B00DC2112 /* OCDGameObject.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3E3DA0F9191E283B00DC2112 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA0FA191E283B00DC2112 /* OCDPrototypeScene.h */,
+				3E3DA0FB191E283B00DC2112 /* OCDPrototypeScene.m */,
+				3E3DA0FC191E283B00DC2112 /* OCDTutorialScene.h */,
+				3E3DA0FD191E283B00DC2112 /* OCDTutorialScene.m */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3E3DA0FE191E283B00DC2112 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA10D191E289D00DC2112 /* OCDGameManager.h */,
+				3E3DA10E191E289D00DC2112 /* OCDGameManager.m */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		3E3DA106191E286A00DC2112 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA107191E286A00DC2112 /* Fonts */,
+				3E3DA108191E286A00DC2112 /* Images.xcassets */,
+				3E3DA109191E286A00DC2112 /* Sounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3E3DA107191E286A00DC2112 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3E3DA109191E286A00DC2112 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA10A191E286A00DC2112 /* Music */,
+				3E3DA10B191E286A00DC2112 /* SFX */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		3E3DA10A191E286A00DC2112 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		3E3DA10B191E286A00DC2112 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SFX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +363,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E28A976190BB02400C03663 /* Images.xcassets in Resources */,
 				3E28A96C190BB02400C03663 /* Main_iPad.storyboard in Resources */,
+				3E3DA10C191E286A00DC2112 /* Images.xcassets in Resources */,
 				3E28A969190BB02400C03663 /* Main_iPhone.storyboard in Resources */,
 				3E28A960190BB02400C03663 /* InfoPlist.strings in Resources */,
+				3E3DA111191E29B800DC2112 /* tutorial-music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,13 +402,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E9AEF4C191755CF00A18F72 /* OCDGameObject.m in Sources */,
-				3E28A96F190BB02400C03663 /* OCDViewController.m in Sources */,
-				3E088EB5190DF7930028E347 /* CNCButton.m in Sources */,
-				3EDFE5E41915BBFA0075B155 /* CNCOneFingerRotationGestureRecognizer.m in Sources */,
-				3E28A972190BB02400C03663 /* OCDMyScene.m in Sources */,
+				3E3DA0FF191E283B00DC2112 /* CNCButton.m in Sources */,
+				3E3DA10F191E289D00DC2112 /* OCDGameManager.m in Sources */,
+				3E3DA101191E283B00DC2112 /* OCDGameObject.m in Sources */,
+				3E3DA104191E283B00DC2112 /* OCDPrototypeScene.m in Sources */,
+				3E3DA102191E283B00DC2112 /* OCDAppDelegate.m in Sources */,
+				3E3DA103191E283B00DC2112 /* OCDViewController.m in Sources */,
+				3E3DA105191E283B00DC2112 /* OCDTutorialScene.m in Sources */,
 				3E28A962190BB02400C03663 /* main.m in Sources */,
-				3E28A966190BB02400C03663 /* OCDAppDelegate.m in Sources */,
+				3E3DA100191E283B00DC2112 /* CNCOneFingerRotationGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

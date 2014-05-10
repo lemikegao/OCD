@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Chin and Cheeks. All rights reserved.
 //
 
-#import "OCDMyScene.h"
+#import "OCDPrototypeScene.h"
 #import "CNCOneFingerRotationGestureRecognizer.h"
 #import "OCDGameObject.h"
 
-@interface OCDMyScene() <UIGestureRecognizerDelegate>
+@interface OCDPrototypeScene() <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableSet *objectSet;
 @property (nonatomic, strong) OCDGameObject *selectedNode;
@@ -38,7 +38,7 @@ static NSString *const kNodeNameGameObject = @"kNodeNameGameObject";
 static NSInteger const kZIndexFront = 9999;
 static NSUInteger const kDegreeInterval = 15;
 
-@implementation OCDMyScene
+@implementation OCDPrototypeScene
 
 - (id)initWithSize:(CGSize)size {
     self = [super initWithSize:size];

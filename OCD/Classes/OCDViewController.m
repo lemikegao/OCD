@@ -7,7 +7,8 @@
 //
 
 #import "OCDViewController.h"
-#import "OCDMyScene.h"
+#import "OCDPrototypeScene.h"
+#import "OCDTutorialScene.h"
 
 @implementation OCDViewController
 
@@ -26,7 +27,8 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [OCDMyScene sceneWithSize:skView.bounds.size];
+//    SKScene *scene = [OCDPrototypeScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [OCDTutorialScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
