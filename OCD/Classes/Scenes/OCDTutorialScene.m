@@ -9,7 +9,7 @@
 #import "OCDTutorialScene.h"
 #import "OCDDraggableObject.h"
 
-@interface OCDTutorialScene()
+@interface OCDTutorialScene() <OCDDraggableObjectDelegate>
 
 @property (nonatomic, strong) SKSpriteNode *dashedO;
 @property (nonatomic, strong) SKSpriteNode *dashedC;
@@ -18,6 +18,8 @@
 @property (nonatomic, strong) OCDDraggableObject *coloredO;
 @property (nonatomic, strong) OCDDraggableObject *coloredC;
 @property (nonatomic, strong) OCDDraggableObject *coloredD;
+
+@property (nonatomic) NSInteger zPositionTracker;
 
 @end
 
@@ -28,6 +30,9 @@
     self = [super initWithSize:size];
     if (self)
     {
+        // Init
+        _zPositionTracker = 0;
+        
         // Set up background
         self.backgroundColor = RGB(255, 255, 235);
         
@@ -65,14 +70,20 @@
 {
     // Letter 'O'
     _coloredO = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-o"]];
+    _coloredO.delegate = self;
+    [self p_updateZPositionForObject:_coloredO];
     [self addChild:_coloredO];
     
     // Letter 'C'
     _coloredC = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-c"]];
+    _coloredC.delegate = self;
+    [self p_updateZPositionForObject:_coloredC];
     [self addChild:_coloredC];
     
     // Letter 'D'
     _coloredD = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-d"]];
+    _coloredD.delegate = self;
+    [self p_updateZPositionForObject:_coloredD];
     [self addChild:_coloredD];
 }
 
@@ -90,6 +101,19 @@
     randomX = arc4random() % (int)_coloredD.renderingNode.size.width + (_dashedD.position.x - _coloredD.renderingNode.size.width/2);
     randomY = arc4random() % (int)(self.size.height - _coloredD.renderingNode.size.height) + _coloredD.renderingNode.size.height/2;
     _coloredD.position = CGPointMake(randomX, randomY);
+}
+
+#pragma mark - OCDDraggableDelegate methods
+- (void)startedDraggingDraggableObject:(OCDDraggableObject *)object
+{
+    [self p_updateZPositionForObject:object];
+}
+
+#pragma mark - Helper methods
+- (void)p_updateZPositionForObject:(SKNode *)object
+{
+    object.zPosition = self.zPositionTracker;
+    self.zPositionTracker++;
 }
 
 @end

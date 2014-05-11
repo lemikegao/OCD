@@ -6,7 +6,17 @@
 //  Copyright (c) 2014 Chin and Cheeks. All rights reserved.
 //
 
+@class OCDDraggableObject;
+
+@protocol OCDDraggableObjectDelegate <NSObject>
+
+- (void)startedDraggingDraggableObject:(OCDDraggableObject *)object;
+
+@end
+
 @interface OCDDraggableObject : SKComponentNode
+
+@property (nonatomic, weak) SKScene<OCDDraggableObjectDelegate> *delegate;
 
 - (instancetype)initWithRenderingNode:(SKSpriteNode *)node;
 - (SKSpriteNode *)renderingNode;

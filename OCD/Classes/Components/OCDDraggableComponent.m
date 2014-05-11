@@ -30,7 +30,6 @@
 
 - (void)dragStart:(SKCTouchState *)touchState
 {
-#warning TODO: Create delegate that points to scene. notify that touch started to update zPosition
     self.startPosition = self.node.position;
 }
 
