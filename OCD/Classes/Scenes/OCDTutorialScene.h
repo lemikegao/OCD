@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface OCDTutorialScene : SKScene
+@interface OCDTutorialScene : SKComponentScene
 
 @end

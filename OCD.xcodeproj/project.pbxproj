@@ -14,7 +14,6 @@
 		3E28A960190BB02400C03663 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A95E190BB02400C03663 /* InfoPlist.strings */; };
 		3E28A962190BB02400C03663 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E28A961190BB02400C03663 /* main.m */; };
 		3E28A969190BB02400C03663 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A967190BB02400C03663 /* Main_iPhone.storyboard */; };
-		3E28A96C190BB02400C03663 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
 		3E28A97D190BB02400C03663 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A97C190BB02400C03663 /* XCTest.framework */; };
 		3E28A97E190BB02400C03663 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A953190BB02400C03663 /* Foundation.framework */; };
 		3E28A97F190BB02400C03663 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28A957190BB02400C03663 /* UIKit.framework */; };
@@ -30,6 +29,8 @@
 		3E3DA10C191E286A00DC2112 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DA108191E286A00DC2112 /* Images.xcassets */; };
 		3E3DA10F191E289D00DC2112 /* OCDGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DA10E191E289D00DC2112 /* OCDGameManager.m */; };
 		3E3DA111191E29B800DC2112 /* tutorial-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */; };
+		3E6F63B1191F447700E60EF2 /* libSpriteKit-Components.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F63AC191F446700E60EF2 /* libSpriteKit-Components.a */; };
+		3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3E28A94F190BB02400C03663;
 			remoteInfo = OCD;
+		};
+		3E6F63AB191F446700E60EF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D924214B1779E20B00CF03C8;
+			remoteInfo = "SpriteKit-Components";
+		};
+		3E6F63AD191F446700E60EF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D924215B1779E20B00CF03C8;
+			remoteInfo = "SpriteKit-ComponentsTests";
+		};
+		3E6F63AF191F447400E60EF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D924214A1779E20B00CF03C8;
+			remoteInfo = "SpriteKit-Components";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -78,6 +100,8 @@
 		3E3DA10D191E289D00DC2112 /* OCDGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDGameManager.h; sourceTree = "<group>"; };
 		3E3DA10E191E289D00DC2112 /* OCDGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDGameManager.m; sourceTree = "<group>"; };
 		3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "tutorial-music.mp3"; sourceTree = "<group>"; };
+		3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SpriteKit-Components.xcodeproj"; path = "SpriteKit-Components/SpriteKit-Components.xcodeproj"; sourceTree = "<group>"; };
+		3E6F640B191F493800E60EF2 /* SKComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKComponents.h; path = "SpriteKit-Components/SpriteKit-Components/SKComponents.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +113,7 @@
 				3E28A958190BB02400C03663 /* UIKit.framework in Frameworks */,
 				3E28A95A190BB02400C03663 /* SpriteKit.framework in Frameworks */,
 				3E28A954190BB02400C03663 /* Foundation.framework in Frameworks */,
+				3E6F63B1191F447700E60EF2 /* libSpriteKit-Components.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				3E3DA0EA191E283B00DC2112 /* Classes */,
+				3EAE8169191F3DB400B81540 /* Libraries */,
 				3E3DA106191E286A00DC2112 /* Resources */,
 				3E28A967190BB02400C03663 /* Main_iPhone.storyboard */,
 				3E28A96A190BB02400C03663 /* Main_iPad.storyboard */,
@@ -282,6 +308,24 @@
 			path = SFX;
 			sourceTree = "<group>";
 		};
+		3E6F63A7191F446700E60EF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E6F63AC191F446700E60EF2 /* libSpriteKit-Components.a */,
+				3E6F63AE191F446700E60EF2 /* SpriteKit-ComponentsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EAE8169191F3DB400B81540 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				3E6F640B191F493800E60EF2 /* SKComponents.h */,
+				3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,6 +341,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3E6F63B0191F447400E60EF2 /* PBXTargetDependency */,
 			);
 			name = OCD;
 			productName = OCD;
@@ -350,6 +395,12 @@
 			mainGroup = 3E28A947190BB02400C03663;
 			productRefGroup = 3E28A951190BB02400C03663 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3E6F63A7191F446700E60EF2 /* Products */;
+					ProjectRef = 3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3E28A94F190BB02400C03663 /* OCD */,
@@ -358,12 +409,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		3E6F63AC191F446700E60EF2 /* libSpriteKit-Components.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSpriteKit-Components.a";
+			remoteRef = 3E6F63AB191F446700E60EF2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E6F63AE191F446700E60EF2 /* SpriteKit-ComponentsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SpriteKit-ComponentsTests.xctest";
+			remoteRef = 3E6F63AD191F446700E60EF2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		3E28A94E190BB02400C03663 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E28A96C190BB02400C03663 /* Main_iPad.storyboard in Resources */,
+				3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */,
 				3E3DA10C191E286A00DC2112 /* Images.xcassets in Resources */,
 				3E28A969190BB02400C03663 /* Main_iPhone.storyboard in Resources */,
 				3E28A960190BB02400C03663 /* InfoPlist.strings in Resources */,
@@ -429,6 +497,11 @@
 			isa = PBXTargetDependency;
 			target = 3E28A94F190BB02400C03663 /* OCD */;
 			targetProxy = 3E28A980190BB02400C03663 /* PBXContainerItemProxy */;
+		};
+		3E6F63B0191F447400E60EF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SpriteKit-Components";
+			targetProxy = 3E6F63AF191F447400E60EF2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

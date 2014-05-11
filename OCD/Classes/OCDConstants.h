@@ -14,6 +14,7 @@
 
 #define RGBA(r,g,b,a)				[SKColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define RGB(r,g,b)					RGBA(r, g, b, 1.0f)
+#define ccp(__X__,__Y__)            CGPointMake(__X__,__Y__) 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
