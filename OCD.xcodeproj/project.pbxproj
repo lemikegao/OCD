@@ -31,6 +31,8 @@
 		3E3DA111191E29B800DC2112 /* tutorial-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */; };
 		3E6F63B1191F447700E60EF2 /* libSpriteKit-Components.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F63AC191F446700E60EF2 /* libSpriteKit-Components.a */; };
 		3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
+		3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */; };
+		3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,10 @@
 		3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "tutorial-music.mp3"; sourceTree = "<group>"; };
 		3E6F63A6191F446700E60EF2 /* SpriteKit-Components.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SpriteKit-Components.xcodeproj"; path = "SpriteKit-Components/SpriteKit-Components.xcodeproj"; sourceTree = "<group>"; };
 		3E6F640B191F493800E60EF2 /* SKComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKComponents.h; path = "SpriteKit-Components/SpriteKit-Components/SKComponents.h"; sourceTree = "<group>"; };
+		3E6F640C191F5ECE00E60EF2 /* OCDDraggableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDraggableObject.h; sourceTree = "<group>"; };
+		3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableObject.m; sourceTree = "<group>"; };
+		3E6F6410191F5F2800E60EF2 /* OCDDraggableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDraggableComponent.h; sourceTree = "<group>"; };
+		3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableComponent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				3E3DA0EB191E283B00DC2112 /* Categories */,
+				3E6F640F191F5F1500E60EF2 /* Components */,
 				3E3DA0EC191E283B00DC2112 /* CNC */,
 				3E3DA0F1191E283B00DC2112 /* Models */,
 				3E3DA0F4191E283B00DC2112 /* OCDAppDelegate.h */,
@@ -243,6 +250,8 @@
 			children = (
 				3E3DA0F2191E283B00DC2112 /* OCDGameObject.h */,
 				3E3DA0F3191E283B00DC2112 /* OCDGameObject.m */,
+				3E6F640C191F5ECE00E60EF2 /* OCDDraggableObject.h */,
+				3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -315,6 +324,15 @@
 				3E6F63AE191F446700E60EF2 /* SpriteKit-ComponentsTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3E6F640F191F5F1500E60EF2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3E6F6410191F5F2800E60EF2 /* OCDDraggableComponent.h */,
+				3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		3EAE8169191F3DB400B81540 /* Libraries */ = {
@@ -473,6 +491,8 @@
 				3E3DA0FF191E283B00DC2112 /* CNCButton.m in Sources */,
 				3E3DA10F191E289D00DC2112 /* OCDGameManager.m in Sources */,
 				3E3DA101191E283B00DC2112 /* OCDGameObject.m in Sources */,
+				3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */,
+				3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */,
 				3E3DA104191E283B00DC2112 /* OCDPrototypeScene.m in Sources */,
 				3E3DA102191E283B00DC2112 /* OCDAppDelegate.m in Sources */,
 				3E3DA103191E283B00DC2112 /* OCDViewController.m in Sources */,
