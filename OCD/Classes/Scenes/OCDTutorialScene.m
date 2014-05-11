@@ -11,7 +11,13 @@
 
 @interface OCDTutorialScene()
 
-@property (nonatomic, strong) NSMutableSet *objectSet;
+@property (nonatomic, strong) SKSpriteNode *dashedO;
+@property (nonatomic, strong) SKSpriteNode *dashedC;
+@property (nonatomic, strong) SKSpriteNode *dashedD;
+
+@property (nonatomic, strong) OCDDraggableObject *coloredO;
+@property (nonatomic, strong) OCDDraggableObject *coloredC;
+@property (nonatomic, strong) OCDDraggableObject *coloredD;
 
 @end
 
@@ -22,9 +28,6 @@
     self = [super initWithSize:size];
     if (self)
     {
-        // Init
-        _objectSet = [[NSMutableSet alloc] initWithCapacity:3];
-        
         // Set up background
         self.backgroundColor = RGB(255, 255, 235);
         
@@ -43,47 +46,50 @@
 - (void)p_setupDashedPlaceholders
 {
     // Letter 'O'
-    SKSpriteNode *dashedO = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-o"];
-    dashedO.position = ccp(self.size.width * 0.2, self.size.height * 0.5);
-    [self addChild:dashedO];
+    _dashedO = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-o"];
+    _dashedO.position = ccp(self.size.width * 0.2, self.size.height * 0.5);
+    [self addChild:_dashedO];
     
     // Letter 'C'
-    SKSpriteNode *dashedC = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-c"];
-    dashedC.position = ccp(self.size.width * 0.5, dashedO.position.y);
-    [self addChild:dashedC];
+    _dashedC = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-c"];
+    _dashedC.position = ccp(self.size.width * 0.5, _dashedO.position.y);
+    [self addChild:_dashedC];
     
     // Letter 'D'
-    SKSpriteNode *dashedD = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-d"];
-    dashedD.position = ccp(self.size.width * 0.8, dashedO.position.y);
-    [self addChild:dashedD];
+    _dashedD = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-d"];
+    _dashedD.position = ccp(self.size.width * 0.8, _dashedO.position.y);
+    [self addChild:_dashedD];
 }
 
 - (void)p_setupColoredLetters
 {
     // Letter 'O'
-    OCDDraggableObject *coloredO = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-o"]];
-    [self addChild:coloredO];
+    _coloredO = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-o"]];
+    [self addChild:_coloredO];
     
     // Letter 'C'
-    OCDDraggableObject *coloredC = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-c"]];
-    [self addChild:coloredC];
+    _coloredC = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-c"]];
+    [self addChild:_coloredC];
     
     // Letter 'D'
-    OCDDraggableObject *coloredD = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-d"]];
-    [self addChild:coloredD];
-    
-    [self.objectSet addObjectsFromArray:@[coloredO, coloredC, coloredD]];
+    _coloredD = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-d"]];
+    [self addChild:_coloredD];
 }
 
 - (void)p_randomizeObjects
 {
-    // Randomize position within the bounds of the screen & randomize rotation
-    [self.objectSet enumerateObjectsUsingBlock:^(OCDDraggableObject *obj, BOOL *stop) {
-        // Position
-        CGFloat randomX = arc4random() % ([@(self.size.width - obj.renderingNode.size.width) intValue]) + obj.renderingNode.size.width/2;
-        CGFloat randomY = arc4random() % ([@(self.size.height - obj.renderingNode.size.height) intValue]) + obj.renderingNode.size.height/2;
-        obj.position = CGPointMake(randomX, randomY);
-    }];
+    // Randomize position within the bounds of the screen
+    CGFloat randomX = arc4random() % (int)_coloredO.renderingNode.size.width + (_dashedO.position.x - _coloredO.renderingNode.size.width/3);
+    CGFloat randomY = arc4random() % (int)(self.size.height - _coloredO.renderingNode.size.height) + _coloredO.renderingNode.size.height/2;
+    _coloredO.position = CGPointMake(randomX, randomY);
+    
+    randomX = arc4random() % (int)_coloredC.renderingNode.size.width + (_dashedC.position.x - _coloredC.renderingNode.size.width/2);
+    randomY = arc4random() % (int)(self.size.height - _coloredC.renderingNode.size.height) + _coloredC.renderingNode.size.height/2;
+    _coloredC.position = CGPointMake(randomX, randomY);
+    
+    randomX = arc4random() % (int)_coloredD.renderingNode.size.width + (_dashedD.position.x - _coloredD.renderingNode.size.width/2);
+    randomY = arc4random() % (int)(self.size.height - _coloredD.renderingNode.size.height) + _coloredD.renderingNode.size.height/2;
+    _coloredD.position = CGPointMake(randomX, randomY);
 }
 
 @end
