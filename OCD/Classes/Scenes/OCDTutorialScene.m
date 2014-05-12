@@ -118,7 +118,7 @@
     collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.85);
     [self addChild:collaborationLabel];
     
-    SKAction *wait = [SKAction waitForDuration:0.5];
+    SKAction *wait = [SKAction waitForDuration:1];
     SKAction *fadeIn = [SKAction fadeInWithDuration:1.8];
     [collaborationLabel runAction:[SKAction sequence:@[wait, fadeIn]]];
 }
