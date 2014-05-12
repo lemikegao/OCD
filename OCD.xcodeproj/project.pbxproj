@@ -33,6 +33,7 @@
 		3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
 		3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */; };
 		3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */; };
+		3ED6448219207BCE009A17E9 /* OCDLockPositionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableObject.m; sourceTree = "<group>"; };
 		3E6F6410191F5F2800E60EF2 /* OCDDraggableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDraggableComponent.h; sourceTree = "<group>"; };
 		3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableComponent.m; sourceTree = "<group>"; };
+		3ED6448019207BCE009A17E9 /* OCDLockPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDLockPositionComponent.h; sourceTree = "<group>"; };
+		3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDLockPositionComponent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +334,8 @@
 			children = (
 				3E6F6410191F5F2800E60EF2 /* OCDDraggableComponent.h */,
 				3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */,
+				3ED6448019207BCE009A17E9 /* OCDLockPositionComponent.h */,
+				3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 				3E3DA10F191E289D00DC2112 /* OCDGameManager.m in Sources */,
 				3E3DA101191E283B00DC2112 /* OCDGameObject.m in Sources */,
 				3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */,
+				3ED6448219207BCE009A17E9 /* OCDLockPositionComponent.m in Sources */,
 				3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */,
 				3E3DA104191E283B00DC2112 /* OCDPrototypeScene.m in Sources */,
 				3E3DA102191E283B00DC2112 /* OCDAppDelegate.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  OCDDraggableComponent.h
+//  OCDLockPositionComponent.h
 //  OCD
 //
 //  Created by Michael Gao on 5/11/14.
@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OCDDraggableComponent : NSObject <SKComponent>
+@interface OCDLockPositionComponent : NSObject <SKComponent>
+
+@property (nonatomic) CGPoint targetPosition;
 
 @end

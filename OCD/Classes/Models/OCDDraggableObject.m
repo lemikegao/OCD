@@ -8,10 +8,12 @@
 
 #import "OCDDraggableObject.h"
 #import "OCDDraggableComponent.h"
+#import "OCDLockPositionComponent.h"
 
 @interface OCDDraggableObject()
 
-@property (nonatomic, weak) SKSpriteNode *renderingNode;
+@property (nonatomic, weak) OCDDraggableComponent *draggableComponent;
+@property (nonatomic, weak) OCDLockPositionComponent *lockPositionComponent;
 
 @end
 
@@ -22,29 +24,29 @@
     self = [super init];
     if (self)
     {
-        [self addComponent:[OCDDraggableComponent new]];
+        OCDDraggableComponent *draggableComponent = [OCDDraggableComponent new];
+        OCDLockPositionComponent *lockPositionComponent = [OCDLockPositionComponent new];
+        
+        [self addComponent:draggableComponent];
+        [self addComponent:lockPositionComponent];
+        
+        _draggableComponent = draggableComponent;
+        _lockPositionComponent = lockPositionComponent;
     }
     
     return self;
 }
 
-- (instancetype)initWithRenderingNode:(SKSpriteNode *)node
+- (instancetype)initWithRenderingNode:(SKSpriteNode *)node targetPosition:(CGPoint)position
 {
     self = [self init];
     if (self)
     {
-        OCDDraggableComponent *component = [self getComponent:[OCDDraggableComponent class]];
-        _renderingNode = node;
-        component.renderingNode = node;
+        _lockPositionComponent.targetPosition = position;
         [self addChild:node];
     }
     
     return self;
-}
-
-- (SKSpriteNode *)renderingNode
-{
-    return _renderingNode;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

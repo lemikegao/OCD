@@ -69,19 +69,19 @@
 - (void)p_setupColoredLetters
 {
     // Letter 'O'
-    _coloredO = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-o"]];
+    _coloredO = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-o"] targetPosition:_dashedO.position];
     _coloredO.delegate = self;
     [self p_updateZPositionForObject:_coloredO];
     [self addChild:_coloredO];
     
     // Letter 'C'
-    _coloredC = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-c"]];
+    _coloredC = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-c"] targetPosition:_dashedC.position];
     _coloredC.delegate = self;
     [self p_updateZPositionForObject:_coloredC];
     [self addChild:_coloredC];
     
     // Letter 'D'
-    _coloredD = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-d"]];
+    _coloredD = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-d"] targetPosition:_dashedD.position];
     _coloredD.delegate = self;
     [self p_updateZPositionForObject:_coloredD];
     [self addChild:_coloredD];
@@ -90,16 +90,19 @@
 - (void)p_randomizeObjects
 {
     // Randomize position within the bounds of the screen
-    CGFloat randomX = arc4random() % (int)_coloredO.renderingNode.size.width + (_dashedO.position.x - _coloredO.renderingNode.size.width/3);
-    CGFloat randomY = arc4random() % (int)(self.size.height - _coloredO.renderingNode.size.height) + _coloredO.renderingNode.size.height/2;
+    CGRect frame = [_coloredO calculateAccumulatedFrame];
+    CGFloat randomX = arc4random() % (int)frame.size.width + (_dashedO.position.x - frame.size.width/3);
+    CGFloat randomY = arc4random() % (int)(self.size.height - frame.size.height) + frame.size.height/2;
     _coloredO.position = CGPointMake(randomX, randomY);
     
-    randomX = arc4random() % (int)_coloredC.renderingNode.size.width + (_dashedC.position.x - _coloredC.renderingNode.size.width/2);
-    randomY = arc4random() % (int)(self.size.height - _coloredC.renderingNode.size.height) + _coloredC.renderingNode.size.height/2;
+    frame = [_coloredC calculateAccumulatedFrame];
+    randomX = arc4random() % (int)frame.size.width + (_dashedC.position.x - frame.size.width/2);
+    randomY = arc4random() % (int)(self.size.height - frame.size.height) + frame.size.height/2;
     _coloredC.position = CGPointMake(randomX, randomY);
     
-    randomX = arc4random() % (int)_coloredD.renderingNode.size.width + (_dashedD.position.x - _coloredD.renderingNode.size.width/2);
-    randomY = arc4random() % (int)(self.size.height - _coloredD.renderingNode.size.height) + _coloredD.renderingNode.size.height/2;
+    frame = [_coloredD calculateAccumulatedFrame];
+    randomX = arc4random() % (int)frame.size.width + (_dashedD.position.x - frame.size.width/2);
+    randomY = arc4random() % (int)(self.size.height - frame.size.height) + frame.size.height/2;
     _coloredD.position = CGPointMake(randomX, randomY);
 }
 

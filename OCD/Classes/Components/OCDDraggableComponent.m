@@ -52,27 +52,24 @@
 - (CGPoint)p_positionInBoundsForPosition:(CGPoint)newPos
 {
     CGPoint retVal = newPos;
-    if (self.renderingNode)
+    CGFloat renderingNodeWidth = self.node.frame.size.width;
+    CGFloat renderingNodeHeight = self.node.frame.size.height;
+    if (newPos.x < renderingNodeWidth/2)
     {
-        CGFloat renderingNodeWidth = self.renderingNode.size.width;
-        CGFloat renderingNodeHeight = self.renderingNode.size.height;
-        if (newPos.x < renderingNodeWidth/2)
-        {
-            retVal.x = renderingNodeWidth/2;
-        }
-        else if (newPos.x > self.sceneSize.width - renderingNodeWidth/2)
-        {
-            retVal.x = self.sceneSize.width - renderingNodeWidth/2;
-        }
-        
-        if (newPos.y < renderingNodeHeight/2)
-        {
-            retVal.y = renderingNodeHeight/2;
-        }
-        else if (newPos.y > self.sceneSize.height - renderingNodeHeight/2)
-        {
-            retVal.y = self.sceneSize.height - renderingNodeHeight/2;
-        }
+        retVal.x = renderingNodeWidth/2;
+    }
+    else if (newPos.x > self.sceneSize.width - renderingNodeWidth/2)
+    {
+        retVal.x = self.sceneSize.width - renderingNodeWidth/2;
+    }
+    
+    if (newPos.y < renderingNodeHeight/2)
+    {
+        retVal.y = renderingNodeHeight/2;
+    }
+    else if (newPos.y > self.sceneSize.height - renderingNodeHeight/2)
+    {
+        retVal.y = self.sceneSize.height - renderingNodeHeight/2;
     }
     
     return retVal;

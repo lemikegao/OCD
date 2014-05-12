@@ -18,7 +18,6 @@
 
 @property (nonatomic, weak) SKScene<OCDDraggableObjectDelegate> *delegate;
 
-- (instancetype)initWithRenderingNode:(SKSpriteNode *)node;
-- (SKSpriteNode *)renderingNode;
+- (instancetype)initWithRenderingNode:(SKSpriteNode *)node targetPosition:(CGPoint)position;
 
 @end
