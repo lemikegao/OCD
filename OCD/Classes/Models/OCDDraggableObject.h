@@ -11,6 +11,7 @@
 @protocol OCDDraggableObjectDelegate <NSObject>
 
 - (void)startedDraggingDraggableObject:(OCDDraggableObject *)object;
+- (void)objectDidLockIntoPosition:(OCDDraggableObject *)object;
 
 @end
 

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) OCDDraggableObject *coloredD;
 
 @property (nonatomic) NSInteger zPositionTracker;
+@property (nonatomic) NSInteger lockedObjectCounter;
 
 @end
 
@@ -32,6 +33,7 @@
     {
         // Init
         _zPositionTracker = 0;
+        _lockedObjectCounter = 0;
         
         // Set up background
         self.backgroundColor = RGB(255, 255, 235);
@@ -106,10 +108,36 @@
     _coloredD.position = CGPointMake(randomX, randomY);
 }
 
+- (void)p_displayIntroductionSequence
+{
+    SKLabelNode *collaborationLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    collaborationLabel.fontColor = RGB(13, 13, 13);
+    collaborationLabel.fontSize = 14;
+    collaborationLabel.text = @"A Chin and Cheeks and Panic Barn collaboration";
+    collaborationLabel.alpha = 0;
+    collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.85);
+    [self addChild:collaborationLabel];
+    
+    SKAction *wait = [SKAction waitForDuration:0.5];
+    SKAction *fadeIn = [SKAction fadeInWithDuration:1.8];
+    [collaborationLabel runAction:[SKAction sequence:@[wait, fadeIn]]];
+}
+
 #pragma mark - OCDDraggableDelegate methods
 - (void)startedDraggingDraggableObject:(OCDDraggableObject *)object
 {
     [self p_updateZPositionForObject:object];
+}
+
+- (void)objectDidLockIntoPosition:(OCDDraggableObject *)object
+{
+    self.lockedObjectCounter++;
+    
+    if (self.lockedObjectCounter == 3)
+    {
+        // Display introduction sequence
+        [self p_displayIntroductionSequence];
+    }
 }
 
 #pragma mark - Helper methods

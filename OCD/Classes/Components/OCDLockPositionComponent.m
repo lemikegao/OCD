@@ -38,6 +38,8 @@ static CGFloat const kMaxLockDistance = 2;
         border.path = CGPathCreateWithRect(CGRectMake(-frame.size.width/2, -frame.size.height/2, frame.size.width, frame.size.height), NULL);
         border.strokeColor = [UIColor brownColor];
         [self.node addChild:border];
+        
+        [self.delegate objectDidLockIntoPosition];
     }
 }
 

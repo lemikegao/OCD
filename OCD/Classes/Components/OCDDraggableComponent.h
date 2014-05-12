@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol OCDDraggableComponentDelegate <NSObject>
+
+- (void)objectDidStartDragging;
+
+@end
+
 @interface OCDDraggableComponent : NSObject <SKComponent>
+
+@property (nonatomic, weak) id<OCDDraggableComponentDelegate> delegate;
 
 @end

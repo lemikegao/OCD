@@ -10,7 +10,7 @@
 #import "OCDDraggableComponent.h"
 #import "OCDLockPositionComponent.h"
 
-@interface OCDDraggableObject()
+@interface OCDDraggableObject() <OCDDraggableComponentDelegate, OCDLockPositionComponentDelegate>
 
 @property (nonatomic, weak) OCDDraggableComponent *draggableComponent;
 @property (nonatomic, weak) OCDLockPositionComponent *lockPositionComponent;
@@ -25,7 +25,9 @@
     if (self)
     {
         OCDDraggableComponent *draggableComponent = [OCDDraggableComponent new];
+        draggableComponent.delegate = self;
         OCDLockPositionComponent *lockPositionComponent = [OCDLockPositionComponent new];
+        lockPositionComponent.delegate = self;
         
         [self addComponent:draggableComponent];
         [self addComponent:lockPositionComponent];
@@ -49,11 +51,16 @@
     return self;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+#pragma mark - OCDDraggableComponentDelegate methods
+- (void)objectDidStartDragging
 {
-    [super touchesBegan:touches withEvent:event];
-    
     [self.delegate startedDraggingDraggableObject:self];
+}
+
+#pragma mark - OCDLockPositionComponentDelegate methods
+- (void)objectDidLockIntoPosition
+{
+    [self.delegate objectDidLockIntoPosition:self];
 }
 
 @end

@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol OCDLockPositionComponentDelegate <NSObject>
+
+- (void)objectDidLockIntoPosition;
+
+@end
+
 @interface OCDLockPositionComponent : NSObject <SKComponent>
 
 @property (nonatomic) CGPoint targetPosition;
+@property (nonatomic, weak) id<OCDLockPositionComponentDelegate> delegate;
 
 @end

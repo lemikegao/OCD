@@ -30,6 +30,7 @@
 
 - (void)dragStart:(SKCTouchState *)touchState
 {
+    [self.delegate objectDidStartDragging];
     self.startPosition = self.node.position;
 }
 
