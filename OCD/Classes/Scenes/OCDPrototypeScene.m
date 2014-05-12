@@ -87,14 +87,6 @@ static NSUInteger const kDegreeInterval = 15;
         _tappedNodeNameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         _tappedNodeNameLabel.zPosition = kZIndexFront;
         
-        // Add version label
-        SKLabelNode *versionLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        versionLabel.fontSize = 12;
-        versionLabel.text = [NSString stringWithFormat:@"%@ (%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
-        versionLabel.fontColor = [UIColor whiteColor];
-        versionLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-        [self addChild:versionLabel];
-        
         _rotationSymbol = [[SKSpriteNode alloc] initWithImageNamed:@"object-rotation"];
         _rotationSymbol.position = CGPointZero;
         _rotationSymbol.name = kNodeNameRotationIcon;
