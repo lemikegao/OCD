@@ -26,6 +26,14 @@
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
+    // Add version (build) label
+    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, skView.bounds.size.height - 12, 100, 12)];
+    versionLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
+    versionLabel.backgroundColor = [UIColor clearColor];
+    versionLabel.textColor = [UIColor blackColor];
+    versionLabel.text = [NSString stringWithFormat:@"v%@ (%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+    [skView addSubview:versionLabel];
+    
     // Create and configure the scene.
 //    SKScene *scene = [OCDPrototypeScene sceneWithSize:skView.bounds.size];
     SKScene * scene = [OCDTutorialScene sceneWithSize:skView.bounds.size];
