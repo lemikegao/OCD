@@ -8,7 +8,7 @@
 
 #import "OCDLockPositionComponent.h"
 
-static CGFloat const kMaxLockDistance = 5;
+static CGFloat const kMaxLockDistance = 6;
 
 @implementation OCDLockPositionComponent
 @synthesize node, enabled;
