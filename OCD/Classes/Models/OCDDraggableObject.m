@@ -24,6 +24,8 @@
     self = [super init];
     if (self)
     {
+        self.dragThreshold = 1;
+        
         OCDDraggableComponent *draggableComponent = [OCDDraggableComponent new];
         draggableComponent.delegate = self;
         OCDLockPositionComponent *lockPositionComponent = [OCDLockPositionComponent new];

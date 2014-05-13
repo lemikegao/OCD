@@ -50,7 +50,7 @@
         componentKeys = [NSMutableOrderedSet orderedSet];
         components = [NSMutableOrderedSet orderedSet];
         
-        self.dragThreshold = 2;
+        self.dragThreshold = 4;
         self.longPressTime = 1;
         
         self.touchState = [SKCTouchState new];

@@ -32,7 +32,6 @@
 {
     [self.delegate objectDidStartDragging];
     self.startPosition = self.node.position;
-    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-click.wav"];
 }
 
 - (void)dragMoved:(SKCTouchState *)touchState
@@ -42,12 +41,22 @@
 
 - (void)dragDropped:(SKCTouchState*)touchState
 {
-    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-click.wav"];
+    
 }
 
 - (void)dragCancelled:(SKCTouchState *)touchState
 {
     self.node.position = self.startPosition;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-click.wav"];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-click.wav"];
 }
 
 #pragma mark - Private methods
