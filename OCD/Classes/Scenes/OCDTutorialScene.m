@@ -194,7 +194,7 @@
     SKSpriteNode *lockedInSprite = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"ocd-letter-3d-%@", letter]];
     lockedInSprite.position = object.position;
     lockedInSprite.alpha = 0;
-    lockedInSprite.zPosition = object.zPosition+1;
+    [self p_updateZPositionForObject:lockedInSprite];
     [self addChild:lockedInSprite];
 
     [lockedInSprite runAction:[SKAction fadeInWithDuration:1.5]];
