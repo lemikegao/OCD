@@ -32,13 +32,6 @@ static CGFloat const kMaxLockDistance = 6;
         // Disable user interaction
         self.node.userInteractionEnabled = NO;
         
-        // Add temporary border to indicate that object is locked into place
-        CGRect frame = [self.node calculateAccumulatedFrame];
-        SKShapeNode *border = [SKShapeNode new];
-        border.path = CGPathCreateWithRect(CGRectMake(-frame.size.width/2, -frame.size.height/2, frame.size.width, frame.size.height), NULL);
-        border.strokeColor = [UIColor brownColor];
-        [self.node addChild:border];
-        
         [self.delegate objectDidLockIntoPosition];
     }
 }

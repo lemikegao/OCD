@@ -10,7 +10,8 @@
 
 @protocol OCDDraggableComponentDelegate <NSObject>
 
-- (void)objectDidStartDragging;
+- (void)objectDidGetTouched;
+- (void)objectDidEndTouch;
 
 @end
 

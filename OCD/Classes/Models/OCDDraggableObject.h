@@ -10,10 +10,13 @@
 
 @protocol OCDDraggableObjectDelegate <NSObject>
 
-- (void)startedDraggingDraggableObject:(OCDDraggableObject *)object;
+- (void)touchStartedOnDraggableObject:(OCDDraggableObject *)object;
+- (void)touchEndedOnDraggableObject:(OCDDraggableObject *)object;
 - (void)objectDidLockIntoPosition:(OCDDraggableObject *)object;
 
 @end
+
+extern NSString *const OCDDraggableObjectRenderingNodeName;
 
 @interface OCDDraggableObject : SKComponentNode
 

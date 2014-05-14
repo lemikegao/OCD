@@ -17,6 +17,8 @@
 
 @end
 
+NSString *const OCDDraggableObjectRenderingNodeName = @"OCDDraggableObjectRenderingNodeName";
+
 @implementation OCDDraggableObject
 
 - (id)init
@@ -47,6 +49,8 @@
     if (self)
     {
         _lockPositionComponent.targetPosition = position;
+        SKSpriteNode *renderingNode = node;
+        renderingNode.name = OCDDraggableObjectRenderingNodeName;
         [self addChild:node];
     }
     
@@ -54,9 +58,14 @@
 }
 
 #pragma mark - OCDDraggableComponentDelegate methods
-- (void)objectDidStartDragging
+- (void)objectDidGetTouched
 {
-    [self.delegate startedDraggingDraggableObject:self];
+    [self.delegate touchStartedOnDraggableObject:self];
+}
+
+- (void)objectDidEndTouch
+{
+    [self.delegate touchEndedOnDraggableObject:self];
 }
 
 #pragma mark - OCDLockPositionComponentDelegate methods

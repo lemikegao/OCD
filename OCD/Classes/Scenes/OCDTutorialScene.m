@@ -11,6 +11,8 @@
 
 @interface OCDTutorialScene() <OCDDraggableObjectDelegate>
 
+@property (nonatomic) NSUInteger scaleFactor;
+
 @property (nonatomic, strong) SKSpriteNode *dashedO;
 @property (nonatomic, strong) SKSpriteNode *dashedC;
 @property (nonatomic, strong) SKSpriteNode *dashedD;
@@ -34,6 +36,7 @@
         // Init
         _zPositionTracker = 0;
         _lockedObjectCounter = 0;
+        _scaleFactor = IS_IPAD ? 2 : 1;
         
         // Set up background
         self.backgroundColor = RGB(255, 255, 235);
@@ -111,26 +114,92 @@
 - (void)p_displayIntroductionSequence
 {
     SKLabelNode *collaborationLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-    collaborationLabel.fontColor = RGB(13, 13, 13);
-    collaborationLabel.fontSize = 14;
+    collaborationLabel.fontColor = RGB(190, 191, 161);
+    collaborationLabel.fontSize = 16*self.scaleFactor;
     collaborationLabel.text = @"A Chin and Cheeks and Panic Barn collaboration";
     collaborationLabel.alpha = 0;
-    collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.85);
+    collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.8);
     [self addChild:collaborationLabel];
     
-    SKAction *wait = [SKAction waitForDuration:1];
-    SKAction *fadeIn = [SKAction fadeInWithDuration:1.8];
+    SKAction *wait = [SKAction waitForDuration:2];
+    SKAction *fadeIn = [SKAction fadeInWithDuration:1.75];
     [collaborationLabel runAction:[SKAction sequence:@[wait, fadeIn]]];
 }
 
 #pragma mark - OCDDraggableDelegate methods
-- (void)startedDraggingDraggableObject:(OCDDraggableObject *)object
+- (void)touchStartedOnDraggableObject:(OCDDraggableObject *)object
 {
+    NSString *letter;
+    if ([object isEqual:self.coloredO])
+    {
+        letter = @"o";
+    }
+    else if ([object isEqual:self.coloredC])
+    {
+        letter = @"c";
+    }
+    else if ([object isEqual:self.coloredD])
+    {
+        letter = @"d";
+    }
+    UIImage *dragImage = [UIImage imageNamed:[NSString stringWithFormat:@"ocd-letter-shadow-%@", letter]];
+    SKSpriteNode *renderingNode = (SKSpriteNode*)[object childNodeWithName:OCDDraggableObjectRenderingNodeName];
+    renderingNode.texture = [SKTexture textureWithImage:dragImage];
+    renderingNode.size = dragImage.size;
+    
     [self p_updateZPositionForObject:object];
+}
+
+- (void)touchEndedOnDraggableObject:(OCDDraggableObject *)object
+{
+    NSString *letter;
+    if ([object isEqual:self.coloredO])
+    {
+        letter = @"o";
+    }
+    else if ([object isEqual:self.coloredC])
+    {
+        letter = @"c";
+    }
+    else if ([object isEqual:self.coloredD])
+    {
+        letter = @"d";
+    }
+    UIImage *normalImage = [UIImage imageNamed:[NSString stringWithFormat:@"ocd-letter-%@", letter]];
+    SKSpriteNode *renderingNode = (SKSpriteNode*)[object childNodeWithName:OCDDraggableObjectRenderingNodeName];
+    renderingNode.texture = [SKTexture textureWithImage:normalImage];
+    renderingNode.size = normalImage.size;
 }
 
 - (void)objectDidLockIntoPosition:(OCDDraggableObject *)object
 {
+    NSString *letter;
+    SKNode *dashedNode;
+    if ([object isEqual:self.coloredO])
+    {
+        letter = @"o";
+        dashedNode = self.dashedO;
+    }
+    else if ([object isEqual:self.coloredC])
+    {
+        letter = @"c";
+        dashedNode = self.dashedC;
+    }
+    else if ([object isEqual:self.coloredD])
+    {
+        letter = @"d";
+        dashedNode = self.dashedD;
+    }
+    
+    SKSpriteNode *lockedInSprite = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"ocd-letter-3d-%@", letter]];
+    lockedInSprite.position = object.position;
+    lockedInSprite.alpha = 0;
+    lockedInSprite.zPosition = object.zPosition+1;
+    [self addChild:lockedInSprite];
+
+    [lockedInSprite runAction:[SKAction fadeInWithDuration:1.5]];
+    [dashedNode runAction:[SKAction fadeOutWithDuration:1.5]];
+    
     self.lockedObjectCounter++;
     
     if (self.lockedObjectCounter == 3)
