@@ -1,6 +1,15 @@
 {
   "images" : [
     {
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "ocd-letter-3d-o~ipad-1.png"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "ocd-letter-3d-o~ipad.png"

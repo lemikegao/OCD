@@ -116,7 +116,7 @@
     SKLabelNode *collaborationLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     collaborationLabel.fontColor = RGB(190, 191, 161);
     collaborationLabel.fontSize = 16*self.scaleFactor;
-    collaborationLabel.text = @"A Chin and Cheeks and Panic Barn collaboration";
+    collaborationLabel.text = @"Some fantastic intro text will appear here";
     collaborationLabel.alpha = 0;
     collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.8);
     [self addChild:collaborationLabel];
