@@ -11,7 +11,7 @@
 
 @interface OCDTutorialScene() <OCDDraggableObjectDelegate>
 
-@property (nonatomic) NSUInteger scaleFactor;
+@property (nonatomic) CGFloat scaleFactor;
 
 @property (nonatomic, strong) SKSpriteNode *dashedO;
 @property (nonatomic, strong) SKSpriteNode *dashedC;
@@ -36,7 +36,18 @@
         // Init
         _zPositionTracker = 0;
         _lockedObjectCounter = 0;
-        _scaleFactor = IS_IPAD ? 2 : 1;
+        if (IS_IPAD)
+        {
+            _scaleFactor = 2;
+        }
+        else if (IS_IPHONE_5)
+        {
+            _scaleFactor = 1.2;
+        }
+        else
+        {
+            _scaleFactor = 1;
+        }
         
         // Set up background
         self.backgroundColor = RGB(255, 255, 235);
@@ -113,17 +124,30 @@
 
 - (void)p_displayIntroductionSequence
 {
-    SKLabelNode *collaborationLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-    collaborationLabel.fontColor = RGB(190, 191, 161);
+    // Label
+    SKLabelNode *collaborationLabel = [SKLabelNode labelNodeWithFontNamed:@"FuturaStd-Medium"];
+    collaborationLabel.fontColor = RGB(193, 193, 155);
     collaborationLabel.fontSize = 16*self.scaleFactor;
-    collaborationLabel.text = @"Some fantastic intro text will appear here";
+    collaborationLabel.text = @"Feed your OCD, for high score and inner peace.";
     collaborationLabel.alpha = 0;
     collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.8);
     [self addChild:collaborationLabel];
     
-    SKAction *wait = [SKAction waitForDuration:2];
-    SKAction *fadeIn = [SKAction fadeInWithDuration:1.75];
+    // Begin button
+    CNCButton *beginButton = [CNCButton buttonWithImageNamedNormal:@"ocd-button-begin" selected:nil];
+    beginButton.position = ccp(self.size.width * 0.5, self.size.height * 0.15);
+    beginButton.alpha = 0;
+    [self addChild:beginButton];
+    
+    CGFloat labelWaitDuration = 2;
+    CGFloat labelFadeInDuration = 1.75;
+    SKAction *wait = [SKAction waitForDuration:labelWaitDuration];
+    SKAction *fadeIn = [SKAction fadeInWithDuration:labelFadeInDuration];
     [collaborationLabel runAction:[SKAction sequence:@[wait, fadeIn]]];
+    
+    wait = [SKAction waitForDuration:labelWaitDuration + labelFadeInDuration + 0.75];
+    fadeIn = [SKAction fadeInWithDuration:0.75];
+    [beginButton runAction:[SKAction sequence:@[wait, fadeIn]]];
 }
 
 #pragma mark - OCDDraggableDelegate methods
