@@ -33,6 +33,7 @@
 		3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
 		3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */; };
 		3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */; };
+		3E8EC74B19345FF700DE2C18 /* OCDDeskScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8EC74A19345FF700DE2C18 /* OCDDeskScene.m */; };
 		3EAB4603192F339E009FFE02 /* FuturaStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3EAB4602192F339E009FFE02 /* FuturaStd-Medium.otf */; };
 		3EAEAA911921F06500A9CCED /* sfx-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEAA901921F06500A9CCED /* sfx-click.wav */; };
 		3ED6448219207BCE009A17E9 /* OCDLockPositionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */; };
@@ -111,6 +112,8 @@
 		3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableObject.m; sourceTree = "<group>"; };
 		3E6F6410191F5F2800E60EF2 /* OCDDraggableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDraggableComponent.h; sourceTree = "<group>"; };
 		3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableComponent.m; sourceTree = "<group>"; };
+		3E8EC74919345FF700DE2C18 /* OCDDeskScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDeskScene.h; sourceTree = "<group>"; };
+		3E8EC74A19345FF700DE2C18 /* OCDDeskScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDeskScene.m; sourceTree = "<group>"; };
 		3EAB4602192F339E009FFE02 /* FuturaStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaStd-Medium.otf"; sourceTree = "<group>"; };
 		3EAEAA901921F06500A9CCED /* sfx-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sfx-click.wav"; sourceTree = "<group>"; };
 		3ED6448019207BCE009A17E9 /* OCDLockPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDLockPositionComponent.h; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 				3E3DA0FB191E283B00DC2112 /* OCDPrototypeScene.m */,
 				3E3DA0FC191E283B00DC2112 /* OCDTutorialScene.h */,
 				3E3DA0FD191E283B00DC2112 /* OCDTutorialScene.m */,
+				3E8EC74919345FF700DE2C18 /* OCDDeskScene.h */,
+				3E8EC74A19345FF700DE2C18 /* OCDDeskScene.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				3E3DA101191E283B00DC2112 /* OCDGameObject.m in Sources */,
 				3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */,
 				3ED6448219207BCE009A17E9 /* OCDLockPositionComponent.m in Sources */,
+				3E8EC74B19345FF700DE2C18 /* OCDDeskScene.m in Sources */,
 				3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */,
 				3E3DA104191E283B00DC2112 /* OCDPrototypeScene.m in Sources */,
 				3E3DA102191E283B00DC2112 /* OCDAppDelegate.m in Sources */,
