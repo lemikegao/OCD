@@ -17,6 +17,12 @@
 
 // Draggable objects
 @property (nonatomic, strong) OCDDraggableObject *paper;
+@property (nonatomic, strong) OCDDraggableObject *blueCrayon;
+@property (nonatomic, strong) OCDDraggableObject *greenCrayon;
+@property (nonatomic, strong) OCDDraggableObject *yellowCrayon;
+
+// Helpers
+@property (nonatomic) NSInteger zPositionTracker;
 
 @end
 
@@ -28,6 +34,7 @@
     if (self)
     {
         self.backgroundColor = RGB(255, 255, 235);
+        _zPositionTracker = 1;
         
         [self p_setupObjects];
     }
@@ -55,20 +62,74 @@
     _paper.delegate = self;
     _paper.position = ccp(self.size.width * 0.22, self.size.height * 0.52);
     [self addChild:_paper];
+    
+    // Crayons
+    for (NSUInteger i=0; i<3; i++)
+    {
+        OCDDraggableObject *crayon;
+        if (i == 0)
+        {
+            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue"] targetPosition:CGPointZero];
+            self.blueCrayon = crayon;
+        }
+        else if (i == 1)
+        {
+            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green"] targetPosition:CGPointZero];
+            self.greenCrayon = crayon;
+        }
+        else
+        {
+            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow"] targetPosition:CGPointZero];
+            self.yellowCrayon = crayon;
+        }
+        
+        crayon.delegate = self;
+        [self p_randomizeObject:crayon];
+        [self addChild:crayon];
+    }
+}
+
+- (void)p_randomizeObject:(OCDDraggableObject *)object
+{
+    // Randomize position within the bounds of the screen
+    CGRect frame = [object calculateAccumulatedFrame];
+    CGFloat randomX = arc4random() % (int)(self.size.width - frame.size.width) + frame.size.width/2;
+    CGFloat randomY = arc4random() % (int)(self.size.height - frame.size.height) + frame.size.height/2;
+    object.position = ccp(randomX, randomY);
 }
 
 #pragma mark - OCDDraggableDelegate methods
 - (void)touchStartedOnDraggableObject:(OCDDraggableObject *)object
 {
     NSString *shadowFilename;
+    BOOL shouldUpdateZPosition = YES;
     if ([object isEqual:self.paper])
     {
+        shouldUpdateZPosition = NO;
         shadowFilename = @"desk-paper-shadow";
     }
+    else if ([object isEqual:self.blueCrayon])
+    {
+        shadowFilename = @"desk-crayon-blue-shadow";
+    }
+    else if ([object isEqual:self.greenCrayon])
+    {
+        shadowFilename = @"desk-crayon-green-shadow";
+    }
+    else if ([object isEqual:self.yellowCrayon])
+    {
+        shadowFilename = @"desk-crayon-yellow-shadow";
+    }
+    
     UIImage *dragImage = [UIImage imageNamed:shadowFilename];
     SKSpriteNode *renderingNode = (SKSpriteNode*)[object childNodeWithName:OCDDraggableObjectRenderingNodeName];
     renderingNode.texture = [SKTexture textureWithImage:dragImage];
     renderingNode.size = dragImage.size;
+    
+    if (shouldUpdateZPosition)
+    {
+        [self p_updateZPositionForObject:object];
+    }
 }
 
 - (void)touchEndedOnDraggableObject:(OCDDraggableObject *)object
@@ -78,6 +139,19 @@
     {
         normalFilename = @"desk-paper";
     }
+    else if ([object isEqual:self.blueCrayon])
+    {
+        normalFilename = @"desk-crayon-blue";
+    }
+    else if ([object isEqual:self.greenCrayon])
+    {
+        normalFilename = @"desk-crayon-green";
+    }
+    else if ([object isEqual:self.yellowCrayon])
+    {
+        normalFilename = @"desk-crayon-yellow";
+    }
+    
     UIImage *normalImage = [UIImage imageNamed:normalFilename];
     SKSpriteNode *renderingNode = (SKSpriteNode*)[object childNodeWithName:OCDDraggableObjectRenderingNodeName];
     renderingNode.texture = [SKTexture textureWithImage:normalImage];
@@ -87,6 +161,13 @@
 - (void)objectDidLockIntoPosition:(OCDDraggableObject *)object
 {
     
+}
+
+#pragma mark - Helper methods
+- (void)p_updateZPositionForObject:(SKNode *)object
+{
+    object.zPosition = self.zPositionTracker;
+    self.zPositionTracker++;
 }
 
 @end
