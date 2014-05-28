@@ -48,8 +48,10 @@
     [self addChild:_writingOnDesk];
     
     // Paper
-#warning - TODO: Update target position
-    _paper = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-paper"] targetPosition:CGPointZero];
+    SKSpriteNode *paperSpriteNode = [SKSpriteNode spriteNodeWithImageNamed:@"desk-paper"];
+    CGFloat targetPositionX = _writingOnDesk.position.x - _writingOnDesk.size.width/2 - paperSpriteNode.size.width/2;
+    CGFloat targetPositionY = _writingOnDesk.position.y - 0.195*paperSpriteNode.size.height;
+    _paper = [[OCDDraggableObject alloc] initWithRenderingNode:paperSpriteNode targetPosition:ccp(targetPositionX, targetPositionY)];
     _paper.delegate = self;
     _paper.position = ccp(self.size.width * 0.22, self.size.height * 0.52);
     [self addChild:_paper];
