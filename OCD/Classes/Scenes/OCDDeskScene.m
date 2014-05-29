@@ -93,7 +93,8 @@
 {
     // Randomize position within the bounds of the screen
     CGRect frame = [object calculateAccumulatedFrame];
-    CGFloat randomX = arc4random() % (int)(self.size.width - frame.size.width) + frame.size.width/2;
+    CGRect paperFrame = [self.paper calculateAccumulatedFrame];
+    CGFloat randomX = arc4random() % (int)(self.size.width - paperFrame.size.width*1.5 - frame.size.width/2) + paperFrame.size.width + frame.size.width/2 + paperFrame.origin.x;
     CGFloat randomY = arc4random() % (int)(self.size.height - frame.size.height) + frame.size.height/2;
     object.position = ccp(randomX, randomY);
 }
