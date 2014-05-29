@@ -23,6 +23,7 @@
 @property (nonatomic, strong) OCDDraggableObject *blueCrayon;
 @property (nonatomic, strong) OCDDraggableObject *greenCrayon;
 @property (nonatomic, strong) OCDDraggableObject *yellowCrayon;
+@property (nonatomic, strong) OCDDraggableObject *mug;
 
 // Helpers
 @property (nonatomic) NSInteger zPositionTracker;
@@ -103,6 +104,12 @@
         [self p_randomizeObject:crayon];
         [self addChild:crayon];
     }
+    
+    // Mug
+    _mug = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-mug"] targetPosition:_coffeeStain.position];
+    [self p_randomizeObject:_mug];
+    _mug.delegate = self;
+    [self addChild:_mug];
 }
 
 - (void)p_randomizeObject:(OCDDraggableObject *)object
@@ -137,6 +144,10 @@
     {
         shadowFilename = @"desk-crayon-yellow-shadow";
     }
+    else if ([object isEqual:self.mug])
+    {
+        shadowFilename = @"desk-mug-shadow";
+    }
     
     UIImage *dragImage = [UIImage imageNamed:shadowFilename];
     SKSpriteNode *renderingNode = (SKSpriteNode*)[object childNodeWithName:OCDDraggableObjectRenderingNodeName];
@@ -168,6 +179,10 @@
     else if ([object isEqual:self.yellowCrayon])
     {
         normalFilename = @"desk-crayon-yellow";
+    }
+    else if ([object isEqual:self.mug])
+    {
+        normalFilename = @"desk-mug";
     }
     
     UIImage *normalImage = [UIImage imageNamed:normalFilename];
