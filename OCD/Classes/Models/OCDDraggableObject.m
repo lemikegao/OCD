@@ -7,8 +7,6 @@
 //
 
 #import "OCDDraggableObject.h"
-#import "OCDDraggableComponent.h"
-#import "OCDLockPositionComponent.h"
 
 @interface OCDDraggableObject() <OCDDraggableComponentDelegate, OCDLockPositionComponentDelegate>
 

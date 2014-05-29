@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Chin and Cheeks. All rights reserved.
 //
 
+#import "OCDDraggableComponent.h"
+#import "OCDLockPositionComponent.h"
+
 @class OCDDraggableObject;
 
 @protocol OCDDraggableObjectDelegate <NSObject>
@@ -21,6 +24,8 @@ extern NSString *const OCDDraggableObjectRenderingNodeName;
 @interface OCDDraggableObject : SKComponentNode
 
 @property (nonatomic, weak) SKScene<OCDDraggableObjectDelegate> *delegate;
+@property (nonatomic, weak, readonly) OCDDraggableComponent *draggableComponent;
+@property (nonatomic, weak, readonly) OCDLockPositionComponent *lockPositionComponent;
 
 - (instancetype)initWithRenderingNode:(SKSpriteNode *)node targetPosition:(CGPoint)position;
 
