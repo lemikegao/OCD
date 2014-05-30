@@ -64,7 +64,7 @@
     CGFloat targetPositionY = _writingOnDesk.position.y - 0.195*paperSpriteNode.size.height;
     _paper = [[OCDDraggableObject alloc] initWithRenderingNode:paperSpriteNode targetPosition:ccp(targetPositionX, targetPositionY)];
     _paper.delegate = self;
-    _paper.position = ccp(self.size.width * 0.22, self.size.height * 0.52);
+    _paper.position = ccp(self.size.width * 0.24, self.size.height * 0.59);
     [self addChild:_paper];
     
     // Crayon outlines
@@ -88,38 +88,30 @@
         {
             crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue"] targetPosition:CGPointMake(self.paper.position.x + self.blueCrayonOutline.position.x, self.paper.position.y + self.blueCrayonOutline.position.y)];
             self.blueCrayon = crayon;
+            crayon.position = ccp(self.size.width * 0.62, self.size.height * 0.22);
         }
         else if (i == 1)
         {
             crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green"] targetPosition:CGPointMake(self.paper.position.x + self.greenCrayonOutline.position.x, self.paper.position.y + self.greenCrayonOutline.position.y)];
             self.greenCrayon = crayon;
+            crayon.position = ccp(self.size.width * 0.69, self.size.height * 0.16);
         }
         else
         {
             crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow"] targetPosition:CGPointMake(self.paper.position.x + self.yellowCrayonOutline.position.x, self.paper.position.y + self.yellowCrayonOutline.position.y)];
             self.yellowCrayon = crayon;
+            crayon.position = ccp(self.size.width * 0.55, self.size.height * 0.18);
         }
         
         crayon.delegate = self;
-        [self p_randomizeObject:crayon];
         [self addChild:crayon];
     }
     
     // Mug
     _mug = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-mug"] targetPosition:_coffeeStain.position];
-    [self p_randomizeObject:_mug];
+    _mug.position = ccp(self.size.width * 0.78, self.size.height * 0.73);
     _mug.delegate = self;
     [self addChild:_mug];
-}
-
-- (void)p_randomizeObject:(OCDDraggableObject *)object
-{
-    // Randomize position within the bounds of the screen
-    CGRect frame = [object calculateAccumulatedFrame];
-    CGRect paperFrame = [self.paper calculateAccumulatedFrame];
-    CGFloat randomX = arc4random() % (int)(self.size.width - paperFrame.size.width*1.5 - frame.size.width/2) + paperFrame.size.width + frame.size.width/2 + paperFrame.origin.x;
-    CGFloat randomY = arc4random() % (int)(self.size.height - frame.size.height) + frame.size.height/2;
-    object.position = ccp(randomX, randomY);
 }
 
 #pragma mark - OCDDraggableDelegate methods
