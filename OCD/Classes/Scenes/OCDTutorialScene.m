@@ -7,6 +7,7 @@
 //
 
 #import "OCDTutorialScene.h"
+#import "OCDDeskScene.h"
 #import "OCDDraggableObject.h"
 
 @interface OCDTutorialScene() <OCDDraggableObjectDelegate>
@@ -145,7 +146,7 @@
 
 - (void)p_releasedBeginButton:(id)sender
 {
-    
+    [self.view presentScene:[OCDDeskScene sceneWithSize:self.size] transition:[SKTransition fadeWithColor:RGB(13, 13, 13) duration:4]];
 }
 
 #pragma mark - OCDDraggableDelegate methods
