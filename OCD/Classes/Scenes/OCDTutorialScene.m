@@ -128,11 +128,24 @@
     CNCButton *beginButton = [CNCButton buttonWithImageNamedNormal:@"ocd-button-begin" selected:@"ocd-button-begin-highlight"];
     beginButton.position = ccp(self.size.width * 0.5, self.size.height * 0.2);
     beginButton.alpha = 0;
+    [beginButton setTouchDownTarget:self action:@selector(p_pressedBeginButton:)];
+    [beginButton setTouchUpInsideTarget:self action:@selector(p_releasedBeginButton:)];
     [self addChild:beginButton];
     
     SKAction *wait = [SKAction waitForDuration:2];
     SKAction *fadeIn = [SKAction fadeInWithDuration:1];
     [beginButton runAction:[SKAction sequence:@[wait, fadeIn]]];
+}
+
+#pragma mark - Button actions
+- (void)p_pressedBeginButton:(id)sender
+{
+    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-button-press.caf"];
+}
+
+- (void)p_releasedBeginButton:(id)sender
+{
+    
 }
 
 #pragma mark - OCDDraggableDelegate methods
