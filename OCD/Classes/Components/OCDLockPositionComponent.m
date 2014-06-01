@@ -32,7 +32,13 @@ static CGFloat const kMaxLockDistance = 6;
         // Disable user interaction
         self.node.userInteractionEnabled = NO;
         
+        [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-snap.caf"];
+        
         [self.delegate objectDidLockIntoPosition];
+    }
+    else
+    {
+        [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-drop-object.caf"];
     }
 }
 

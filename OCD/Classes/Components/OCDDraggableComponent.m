@@ -56,7 +56,6 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-drop-object.caf"];
     [self.delegate objectDidEndTouch];
 }
 
