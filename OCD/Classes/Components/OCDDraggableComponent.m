@@ -50,13 +50,13 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-click.wav"];
+    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-pick-up-object.caf"];
     [self.delegate objectDidGetTouched];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-click.wav"];
+    [[OCDGameManager sharedGameManager] playSoundEffect:@"sfx-drop-object.caf"];
     [self.delegate objectDidEndTouch];
 }
 

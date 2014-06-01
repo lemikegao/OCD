@@ -33,9 +33,10 @@
 		3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28A96A190BB02400C03663 /* Main_iPad.storyboard */; };
 		3E6F640E191F5ECE00E60EF2 /* OCDDraggableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */; };
 		3E6F6412191F5F2800E60EF2 /* OCDDraggableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */; };
+		3E777CF6193AA7C40082DBDE /* sfx-drop-object.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3E777CF4193AA7C40082DBDE /* sfx-drop-object.caf */; };
+		3E777CF7193AA7C40082DBDE /* sfx-pick-up-object.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3E777CF5193AA7C40082DBDE /* sfx-pick-up-object.caf */; };
 		3E8EC74B19345FF700DE2C18 /* OCDDeskScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8EC74A19345FF700DE2C18 /* OCDDeskScene.m */; };
 		3EAB4603192F339E009FFE02 /* FuturaStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3EAB4602192F339E009FFE02 /* FuturaStd-Medium.otf */; };
-		3EAEAA911921F06500A9CCED /* sfx-click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEAA901921F06500A9CCED /* sfx-click.wav */; };
 		3ED6448219207BCE009A17E9 /* OCDLockPositionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */; };
 /* End PBXBuildFile section */
 
@@ -112,10 +113,11 @@
 		3E6F640D191F5ECE00E60EF2 /* OCDDraggableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableObject.m; sourceTree = "<group>"; };
 		3E6F6410191F5F2800E60EF2 /* OCDDraggableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDraggableComponent.h; sourceTree = "<group>"; };
 		3E6F6411191F5F2800E60EF2 /* OCDDraggableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDraggableComponent.m; sourceTree = "<group>"; };
+		3E777CF4193AA7C40082DBDE /* sfx-drop-object.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sfx-drop-object.caf"; sourceTree = "<group>"; };
+		3E777CF5193AA7C40082DBDE /* sfx-pick-up-object.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sfx-pick-up-object.caf"; sourceTree = "<group>"; };
 		3E8EC74919345FF700DE2C18 /* OCDDeskScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDDeskScene.h; sourceTree = "<group>"; };
 		3E8EC74A19345FF700DE2C18 /* OCDDeskScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDDeskScene.m; sourceTree = "<group>"; };
 		3EAB4602192F339E009FFE02 /* FuturaStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaStd-Medium.otf"; sourceTree = "<group>"; };
-		3EAEAA901921F06500A9CCED /* sfx-click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sfx-click.wav"; sourceTree = "<group>"; };
 		3ED6448019207BCE009A17E9 /* OCDLockPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDLockPositionComponent.h; sourceTree = "<group>"; };
 		3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDLockPositionComponent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -310,7 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				3E3DA10A191E286A00DC2112 /* Music */,
-				3E3DA10B191E286A00DC2112 /* SFX */,
+				3E777CF3193AA7C40082DBDE /* SFX */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -321,14 +323,6 @@
 				3E3DA110191E29B800DC2112 /* tutorial-music.mp3 */,
 			);
 			path = Music;
-			sourceTree = "<group>";
-		};
-		3E3DA10B191E286A00DC2112 /* SFX */ = {
-			isa = PBXGroup;
-			children = (
-				3EAEAA901921F06500A9CCED /* sfx-click.wav */,
-			);
-			path = SFX;
 			sourceTree = "<group>";
 		};
 		3E6F63A7191F446700E60EF2 /* Products */ = {
@@ -349,6 +343,15 @@
 				3ED6448119207BCE009A17E9 /* OCDLockPositionComponent.m */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		3E777CF3193AA7C40082DBDE /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				3E777CF4193AA7C40082DBDE /* sfx-drop-object.caf */,
+				3E777CF5193AA7C40082DBDE /* sfx-pick-up-object.caf */,
+			);
+			path = SFX;
 			sourceTree = "<group>";
 		};
 		3EAE8169191F3DB400B81540 /* Libraries */ = {
@@ -466,9 +469,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E6F63B2191F454F00E60EF2 /* Main_iPad.storyboard in Resources */,
-				3EAEAA911921F06500A9CCED /* sfx-click.wav in Resources */,
+				3E777CF7193AA7C40082DBDE /* sfx-pick-up-object.caf in Resources */,
 				3E3DA10C191E286A00DC2112 /* Images.xcassets in Resources */,
 				3E28A969190BB02400C03663 /* Main_iPhone.storyboard in Resources */,
+				3E777CF6193AA7C40082DBDE /* sfx-drop-object.caf in Resources */,
 				3E28A960190BB02400C03663 /* InfoPlist.strings in Resources */,
 				3EAB4603192F339E009FFE02 /* FuturaStd-Medium.otf in Resources */,
 				3E3DA111191E29B800DC2112 /* tutorial-music.mp3 in Resources */,
