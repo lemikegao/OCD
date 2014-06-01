@@ -58,27 +58,27 @@
     _writingOnDesk.position = ccp(self.size.width * 0.9, self.size.height * 0.38);
     [self addChild:_writingOnDesk];
     
+    // Crayon outlines
+    _blueCrayonOutline = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue-outline"];
+    _blueCrayonOutline.position = ccp(self.size.width * 0.14, self.size.height * 0.25);
+    [self addChild:_blueCrayonOutline];
+    
+    _greenCrayonOutline = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green-outline"];
+    _greenCrayonOutline.position = ccp(self.size.width * 0.20, _blueCrayonOutline.position.y);
+    [self addChild:_greenCrayonOutline];
+    
+    _yellowCrayonOutline = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow-outline"];
+    _yellowCrayonOutline.position = ccp(self.size.width * 0.26, _blueCrayonOutline.position.y);
+    [self addChild:_yellowCrayonOutline];
+    
     // Paper
     SKSpriteNode *paperSpriteNode = [SKSpriteNode spriteNodeWithImageNamed:@"desk-paper"];
     CGFloat targetPositionX = _writingOnDesk.position.x - _writingOnDesk.size.width/2 - paperSpriteNode.size.width/2;
-    CGFloat targetPositionY = _writingOnDesk.position.y - 0.195*paperSpriteNode.size.height;
+    CGFloat targetPositionY = _writingOnDesk.position.y - 0.0515*paperSpriteNode.size.height;
     _paper = [[OCDDraggableObject alloc] initWithRenderingNode:paperSpriteNode targetPosition:ccp(targetPositionX, targetPositionY)];
     _paper.delegate = self;
     _paper.position = ccp(self.size.width * 0.24, self.size.height * 0.59);
     [self addChild:_paper];
-    
-    // Crayon outlines
-    _blueCrayonOutline = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue-outline"];
-    _blueCrayonOutline.position = ccp(-self.size.width * 0.02, -self.size.height * 0.043);
-    [_paper addChild:_blueCrayonOutline];
-    
-    _greenCrayonOutline = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green-outline"];
-    _greenCrayonOutline.position = ccp(self.size.width * 0.03, _blueCrayonOutline.position.y);
-    [_paper addChild:_greenCrayonOutline];
-    
-    _yellowCrayonOutline = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow-outline"];
-    _yellowCrayonOutline.position = ccp(self.size.width * 0.08, _blueCrayonOutline.position.y);
-    [_paper addChild:_yellowCrayonOutline];
     
     // Crayons
     for (NSUInteger i=0; i<3; i++)
@@ -86,19 +86,19 @@
         OCDDraggableObject *crayon;
         if (i == 0)
         {
-            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue"] targetPosition:CGPointMake(self.paper.position.x + self.blueCrayonOutline.position.x, self.paper.position.y + self.blueCrayonOutline.position.y)];
+            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue"] targetPosition:self.blueCrayonOutline.position];
             self.blueCrayon = crayon;
             crayon.position = ccp(self.size.width * 0.62, self.size.height * 0.22);
         }
         else if (i == 1)
         {
-            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green"] targetPosition:CGPointMake(self.paper.position.x + self.greenCrayonOutline.position.x, self.paper.position.y + self.greenCrayonOutline.position.y)];
+            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green"] targetPosition:self.greenCrayonOutline.position];
             self.greenCrayon = crayon;
             crayon.position = ccp(self.size.width * 0.69, self.size.height * 0.16);
         }
         else
         {
-            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow"] targetPosition:CGPointMake(self.paper.position.x + self.yellowCrayonOutline.position.x, self.paper.position.y + self.yellowCrayonOutline.position.y)];
+            crayon = [[OCDDraggableObject alloc] initWithRenderingNode:[SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow"] targetPosition:self.yellowCrayonOutline.position];
             self.yellowCrayon = crayon;
             crayon.position = ccp(self.size.width * 0.55, self.size.height * 0.18);
         }
@@ -158,7 +158,6 @@
     if ([object isEqual:self.paper])
     {
         normalFilename = @"desk-paper";
-        [self p_updateCrayonTargetPositions];
     }
     else if ([object isEqual:self.blueCrayon])
     {
@@ -187,33 +186,15 @@
 {
     if ([object isEqual:self.blueCrayon])
     {
-        SKSpriteNode *blueCrayonSprite = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-blue"];
-        blueCrayonSprite.position = self.blueCrayonOutline.position;
-        [self.paper addChild:blueCrayonSprite];
-        
         [self.blueCrayonOutline removeFromParent];
-        [self.blueCrayon removeFromParent];
-        self.blueCrayon = nil;
     }
     else if ([object isEqual:self.greenCrayon])
     {
-        SKSpriteNode *greenCrayonSprite = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-green"];
-        greenCrayonSprite.position = self.greenCrayonOutline.position;
-        [self.paper addChild:greenCrayonSprite];
-        
         [self.greenCrayonOutline removeFromParent];
-        [self.greenCrayon removeFromParent];
-        self.greenCrayon = nil;
     }
     else if ([object isEqual:self.yellowCrayon])
     {
-        SKSpriteNode *yellowCrayonSprite = [SKSpriteNode spriteNodeWithImageNamed:@"desk-crayon-yellow"];
-        yellowCrayonSprite.position = self.yellowCrayonOutline.position;
-        [self.paper addChild:yellowCrayonSprite];
-        
         [self.yellowCrayonOutline removeFromParent];
-        [self.yellowCrayon removeFromParent];
-        self.yellowCrayon = nil;
     }
 }
 
@@ -222,14 +203,6 @@
 {
     object.zPosition = self.zPositionTracker;
     self.zPositionTracker++;
-}
-
-- (void)p_updateCrayonTargetPositions
-{
-    CGPoint paperPosition = self.paper.position;
-    self.blueCrayon.lockPositionComponent.targetPosition = CGPointMake(paperPosition.x + self.blueCrayonOutline.position.x, paperPosition.y + self.blueCrayonOutline.position.y);
-    self.greenCrayon.lockPositionComponent.targetPosition = CGPointMake(paperPosition.x + self.greenCrayonOutline.position.x, paperPosition.y + self.greenCrayonOutline.position.y);
-    self.yellowCrayon.lockPositionComponent.targetPosition = CGPointMake(paperPosition.x + self.yellowCrayonOutline.position.x, paperPosition.y + self.yellowCrayonOutline.position.y);
 }
 
 @end
