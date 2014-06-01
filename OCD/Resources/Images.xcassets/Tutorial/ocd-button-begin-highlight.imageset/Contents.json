@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "ocd-button-begin-1.png"
+      "filename" : "ocd-button-begin-highlight-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "ocd-button-begin.png"
+      "filename" : "ocd-button-begin-highlight.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "ocd-button-begin@2x.png"
+      "filename" : "ocd-button-begin-highlight@2x.png"
     }
   ],
   "info" : {

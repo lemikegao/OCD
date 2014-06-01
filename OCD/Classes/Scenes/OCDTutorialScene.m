@@ -125,7 +125,7 @@
 - (void)p_displayIntroductionSequence
 {
     // Begin button
-    CNCButton *beginButton = [CNCButton buttonWithImageNamedNormal:@"ocd-button-begin" selected:nil];
+    CNCButton *beginButton = [CNCButton buttonWithImageNamedNormal:@"ocd-button-begin" selected:@"ocd-button-begin-highlight"];
     beginButton.position = ccp(self.size.width * 0.5, self.size.height * 0.2);
     beginButton.alpha = 0;
     [self addChild:beginButton];
