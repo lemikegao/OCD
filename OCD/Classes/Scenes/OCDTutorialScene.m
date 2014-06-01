@@ -68,7 +68,7 @@
 {
     // Letter 'O'
     _dashedO = [SKSpriteNode spriteNodeWithImageNamed:@"ocd-letter-dotted-o"];
-    _dashedO.position = ccp(self.size.width * 0.2, self.size.height * 0.5);
+    _dashedO.position = ccp(self.size.width * 0.2, self.size.height * 0.55);
     [self addChild:_dashedO];
     
     // Letter 'C'
@@ -124,29 +124,14 @@
 
 - (void)p_displayIntroductionSequence
 {
-    // Label
-    SKLabelNode *collaborationLabel = [SKLabelNode labelNodeWithFontNamed:@"FuturaStd-Medium"];
-    collaborationLabel.fontColor = RGB(193, 193, 155);
-    collaborationLabel.fontSize = 16*self.scaleFactor;
-    collaborationLabel.text = @"Feed your OCD, for high score and inner peace.";
-    collaborationLabel.alpha = 0;
-    collaborationLabel.position = ccp(self.size.width * 0.5, self.size.height * 0.8);
-    [self addChild:collaborationLabel];
-    
     // Begin button
     CNCButton *beginButton = [CNCButton buttonWithImageNamedNormal:@"ocd-button-begin" selected:nil];
-    beginButton.position = ccp(self.size.width * 0.5, self.size.height * 0.15);
+    beginButton.position = ccp(self.size.width * 0.5, self.size.height * 0.2);
     beginButton.alpha = 0;
     [self addChild:beginButton];
     
-    CGFloat labelWaitDuration = 2;
-    CGFloat labelFadeInDuration = 1.75;
-    SKAction *wait = [SKAction waitForDuration:labelWaitDuration];
-    SKAction *fadeIn = [SKAction fadeInWithDuration:labelFadeInDuration];
-    [collaborationLabel runAction:[SKAction sequence:@[wait, fadeIn]]];
-    
-    wait = [SKAction waitForDuration:labelWaitDuration + labelFadeInDuration + 0.75];
-    fadeIn = [SKAction fadeInWithDuration:0.75];
+    SKAction *wait = [SKAction waitForDuration:2];
+    SKAction *fadeIn = [SKAction fadeInWithDuration:1];
     [beginButton runAction:[SKAction sequence:@[wait, fadeIn]]];
 }
 
