@@ -37,8 +37,8 @@
     
     // Create and configure the scene.
 //    SKScene *scene = [OCDPrototypeScene sceneWithSize:skView.bounds.size];
-//    SKScene * scene = [OCDTutorialScene sceneWithSize:skView.bounds.size];
-    SKScene *scene = [OCDDeskScene sceneWithSize:skView.bounds.size];
+    SKScene *scene = [OCDTutorialScene sceneWithSize:skView.bounds.size];
+//    SKScene *scene = [OCDDeskScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

@@ -8,6 +8,7 @@
 
 #import "OCDDeskScene.h"
 #import "OCDDraggableObject.h"
+#import "OCDTutorialScene.h"
 
 @interface OCDDeskScene() <OCDDraggableObjectDelegate>
 
@@ -27,8 +28,11 @@
 
 // Helpers
 @property (nonatomic) NSInteger zPositionTracker;
+@property (nonatomic) NSUInteger numLockedInObjects;
 
 @end
+
+static NSUInteger const kNumObjects = 5;
 
 @implementation OCDDeskScene
 
@@ -39,6 +43,7 @@
     {
         self.backgroundColor = RGB(255, 255, 235);
         _zPositionTracker = 1;
+        _numLockedInObjects = 0;
         
         [self p_setupObjects];
     }
@@ -184,6 +189,8 @@
 
 - (void)objectDidLockIntoPosition:(OCDDraggableObject *)object
 {
+    self.numLockedInObjects++;
+    
     if ([object isEqual:self.blueCrayon])
     {
         [self.blueCrayonOutline removeFromParent];
@@ -196,6 +203,11 @@
     {
         [self.yellowCrayonOutline removeFromParent];
     }
+    
+    if (self.numLockedInObjects == kNumObjects)
+    {
+        [self p_segueToNextScene];
+    }
 }
 
 #pragma mark - Helper methods
@@ -203,6 +215,13 @@
 {
     object.zPosition = self.zPositionTracker;
     self.zPositionTracker++;
+}
+
+- (void)p_segueToNextScene
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.view presentScene:[OCDTutorialScene sceneWithSize:self.size] transition:[SKTransition fadeWithColor:RGB(13, 13, 13) duration:4]];
+    });
 }
 
 @end
