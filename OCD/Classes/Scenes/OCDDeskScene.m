@@ -41,7 +41,12 @@ static NSUInteger const kNumObjects = 5;
     self = [super initWithSize:size];
     if (self)
     {
-        self.backgroundColor = RGB(255, 255, 235);
+        // Background
+        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"desk-background"];
+        background.anchorPoint = ccp(0, 0);
+        background.zPosition = -100;
+        [self addChild:background];
+        
         _zPositionTracker = 1;
         _numLockedInObjects = 0;
         

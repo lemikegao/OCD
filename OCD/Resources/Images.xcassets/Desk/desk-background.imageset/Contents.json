@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "ocd-letter-c-1.png"
+      "filename" : "desk-background-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "ocd-letter-c.png"
+      "filename" : "desk-background.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "ocd-letter-c@2x.png"
+      "filename" : "desk-background@2x.png"
     }
   ],
   "info" : {
